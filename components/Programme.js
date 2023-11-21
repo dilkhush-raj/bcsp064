@@ -3,7 +3,7 @@ import Link from "next/link";
 export const revalidate = 60;
 
 async function getData({ slug }) {
-  const res = await fetch("http://localhost:3000/api/programme/" + slug);
+  const res = await fetch(process.env.DOMAIN + "/api/programme/" + slug);
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

@@ -3,7 +3,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export const revalidate = 60;
 
 async function getData({ email }) {
-  const res = await fetch("http://localhost:3000/api/users/" + email);
+  const res = await fetch(process.env.DOMAIN + "/api/users/" + email);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");

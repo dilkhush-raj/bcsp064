@@ -3,7 +3,7 @@
 export default function DeleteProgramme({ id }) {
   const deleteBlog = async (id) => {
     console.log(id);
-    const res = fetch(`http://localhost:3000/api/programme/${id}`, {
+    const res = fetch(process.env.DOMAIN + "/api/programme/" + id , {
       method: "DELETE",
       // //@ts-ignore
     });

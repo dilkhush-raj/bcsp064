@@ -3,7 +3,7 @@ import Link from "next/link";
 export const revalidate = 60;
 
 async function getData({ programme }) {
-  const res = await fetch(process.env.DOMAIN + "/api/notice/" + programme);
+  const res = await fetch(process.env.NEXTAUTH_URL + "/api/notice/" + programme);
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -35,7 +35,7 @@ export default async function Notice({ programme }) {
               <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">
                 {item?.semester?.map((notice, index) => (
                   <div
-                    key={notice}
+                    key={index}
                     className={semesterBgColors[index] + " rounded-md py-1 px-2"}
                   >
                     {notice}

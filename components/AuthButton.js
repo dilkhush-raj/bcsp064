@@ -1,6 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AuthButton() {
   const [model, setModel] = useState(false);
@@ -24,9 +25,11 @@ export default function AuthButton() {
               />
               <b>{session?.user?.name}</b>
               <i>{session?.user?.email}</i>
-              <button className="bg-gray-300 rounded-md px-2 py-1 mt-2">
-                Manage Your Account
-              </button>
+              <Link href="/account">
+                <button className="bg-gray-300 rounded-md px-2 py-1 mt-2">
+                  Manage Your Account
+                </button>
+              </Link>
               <button
                 onClick={() => signOut()}
                 className="bg-red-600 text-white px-2 py-1 mt-2 shadow-md rounded-md"

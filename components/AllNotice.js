@@ -2,7 +2,7 @@ import Link from "next/link";
 export const revalidate = 60;
 
 async function getData() {
-  const res = await fetch(process.env.DOMAIN + "/api/notice");
+  const res = await fetch(process.env.NEXTAUTH_URL + "/api/notice");
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
@@ -35,7 +35,7 @@ export default async function AllNotice() {
               <span className="uppercase flex items-center px-2 py-1 rounded-md bg-red-500">{item?.programme}</span>
                 {item?.semester?.map((notice, index) => (
                   <div
-                    key={notice}
+                    key={index}
                     className={semesterBgColors[index] + " rounded-md py-1 px-2"}
                   >
                     {notice}

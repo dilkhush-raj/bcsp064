@@ -3,9 +3,8 @@
 export default function DeleteProgramme({ id }) {
   const deleteBlog = async (id) => {
     console.log(id);
-    const res = fetch(process.env.DOMAIN + "/api/programme/" + id , {
+    const res = fetch(process.env.NEXTAUTH_URL + "/api/programme/" + id , {
       method: "DELETE",
-      // //@ts-ignore
     });
   };
   const handleDelete = async () => {

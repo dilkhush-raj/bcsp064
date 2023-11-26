@@ -1,0 +1,18 @@
+<svg width="200" height="170" viewBox="0 0 200 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Group 1">
+      <path id="Vector" d="M190 0H10C4.475 0 0 4.475 0 10V160C0 165.525 4.475 170 10 170H190C195.525 170 200 165.525 200 160V10C200 4.475 195.525 0 190 0Z" fill="url(#paint0_linear_2_8)"/>
+      <path id="Vector_2" d="M165 10H35C35 23.805 23.805 35 10 35V135C23.805 135 35 146.195 35 160H165C165 146.195 176.195 135 190 135V35C176.195 35 165 23.805 165 10ZM140 80H60C57.24 80 55 77.76 55 75C55 72.24 57.24 70 60 70H140C142.76 70 145 72.24 145 75C145 77.76 142.76 80 140 80ZM145 60H55C49.475 60 45 55.525 45 50C45 44.475 49.475 40 55 40H145C150.525 40 155 44.475 155 50C155 55.525 150.525 60 145 60Z" fill="#F0F0F0"/>
+    </g>
+    <defs>
+      <linearGradient id="paint0_linear_2_8" x1="0" y1="85" x2="200" y2="85" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#32BDEF"/>
+        <stop offset="1" stop-color="#1EA2E4"/>
+      </linearGradient>
+    </defs>
+    <!-- Add text at the bottom -->
+    <foreignObject x="10" y="60%" width="180" height="150">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 32px; text-transform: uppercase; font-weight: 700; text-align: center; color: black; overflow-wrap: break-word;">
+      BCA
+    </div>
+  </foreignObject>
+  </svg>

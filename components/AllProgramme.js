@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ProgrammeImage from "./common/programme";
 export const revalidate = 60;
 
 async function getData() {
@@ -15,15 +16,16 @@ async function getData() {
 export default async function AllProgramme() {
   const data = await getData();
   return (
-    <div className="grid grid-cols-4 p-2 md:p-4 gap-10">
+    <div className="flex gap-5 p-4 flex-wrap ">
       {data.allProgramme.map((programme) => (
         <Link
           href={"/programme/" + programme.slug}
           key={programme._id}
-          className=" p-4 rounded-md shadow-sm bg-slate-400"
+          className="  "
         >
-          <div className="font-bold text-4xl">{programme.name}</div>
+          {/* <div className="font-bold text-4xl">{programme.name}</div> */}
           {/* <DeleteProgramme id={programme._id} /> */}
+          <ProgrammeImage title={programme.name} />
         </Link>
       ))}
     </div>

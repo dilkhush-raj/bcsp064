@@ -6,7 +6,7 @@ export default async function App() {
   console.log(data);
 
   return (
-    <div >
+    <div className=" min-h-screen" >
       <Export userData={data} />
     </div>
   )

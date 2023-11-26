@@ -30,9 +30,6 @@ function Export({ userData }) {
           })) || []
         }
       ];
-      
-      
-    console.log(data1);
 
     let settings = {
       fileName: "MySpreadsheet",
@@ -41,9 +38,9 @@ function Export({ userData }) {
   };
 
   return (
-    <div id="app">
-      <h1>Testing json-as-xlsx</h1>
-      <button onClick={downloadFile}>Download</button>
+    <div className="flex items-center justify-center my-10 flex-col gap-10">
+      <h1>Testing file export to Excel Sheet</h1>
+      <button onClick={downloadFile} className="bg-blue-300 p-2">Download</button>
     </div>
   );
 }

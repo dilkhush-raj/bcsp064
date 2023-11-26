@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import SingleProgramme from "@/components/Programme";
+import SingleProgramme from "@/components/SingleProgramme";
 import Notice from "@/components/Notice";
 import AllProgramme from "@/components/AllProgramme";
 import getUserData from "@/utils/user";

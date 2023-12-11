@@ -1,4 +1,4 @@
-export const website_title = "RC Patna Student Zone";
+export const website_title = "TPS IGNOU Student Zone";
 export const impLinks = [
     {
       label: "IGNOU Official Website",

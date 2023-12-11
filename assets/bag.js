@@ -673,9 +673,8 @@ export default function Bag({ colour, semester, width }) {
             data-name="Semester 3"
             transform="translate(414.95 650)"
             fill="#fff"
-            fontSize={34}
-            fontFamily="SegoeUI-Bold, Segoe UI"
-            fontWeight={700}
+            fontSize={36}
+            fontWeight={500}
           >
             <tspan x={0} y={0}>
               {semester}

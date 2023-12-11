@@ -1,8 +1,8 @@
 export default function ProgrammeImage({title}) {
   return (
     <svg
-      width={200}
-      height={170}
+      width={180}
+      height={150}
       viewBox="0 0 200 170"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

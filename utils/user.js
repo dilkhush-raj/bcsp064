@@ -30,6 +30,3 @@ async function getUserData() {
 }
 
 export default getUserData;  // Export the function
-
-
-// export default userData;

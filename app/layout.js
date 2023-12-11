@@ -1,10 +1,10 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
+import Footer from "@/components/ui/Footer";
 import { website_title } from "@/utils/constant";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/ui/Navbar";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/components/SessionProvider";
+import SessionProvider from "@/utils/SessionProvider";
 import StyledComponentsRegistry from "@/utils/AntRegistry";
 
 const poppins = Poppins({
@@ -19,14 +19,18 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+
   const session = await getServerSession();
   return (
     <html lang="en">
       <body>
         <SessionProvider session={session}>
           <StyledComponentsRegistry>
-            <Navbar />
-            {children}
+            <div className="max-w-[1600px] mx-auto ">
+              <Navbar />
+              {children}
+            </div>
+
             <Footer />
           </StyledComponentsRegistry>
         </SessionProvider>

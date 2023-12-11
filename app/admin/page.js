@@ -1,11 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import User from "@/components/Users";
 
 export default async function page() {
   const session = await getServerSession(authOptions);
-
-  // console.log(session?.user?.role);
 
   if (session?.user?.role !== "admin") {
     return (
@@ -24,7 +21,6 @@ export default async function page() {
       <h1 className="text-2xl font-bold bg-[#eee] shadow-md p-2 rounded-md text-center">
         Admin Dashboard
       </h1>
-      <User />
     </main>
   );
 }

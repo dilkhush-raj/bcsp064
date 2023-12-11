@@ -2,7 +2,6 @@
 import xlsx from "json-as-xlsx";
 
 function Export({ userData }) {
-//   console.log(userData);
   const downloadFile = () => {
     
     let data = [
@@ -11,23 +10,19 @@ function Export({ userData }) {
           columns: [
             { label: "Email", value: "email" },
             { label: "Enrolment", value: "enrollment" },
-            // { label: "Image", value: "image" },
             { label: "Name", value: "name" },
             { label: "Programme", value: "programme" },
             { label: "Role", value: "role" },
-            // { label: "__v", value: "__v" },
-            // { label: "_id", value: "_id" }
           ],
-          content: userData?.allUser?.map(user => ({
-            email: user.email,
-            enrollment: user.enrollment,
-            // image: user.image,
-            name: user.name,
-            programme: user.programme,
-            role: user.role,
-            // __v: user.__v,
-            // _id: user._id
-          })) || []
+          content: 
+          // userData?.allUser?.map(user => ({
+          //   email: user.email,
+          //   enrollment: user.enrollment,
+          //   name: user.name,
+          //   programme: user.programme,
+          //   role: user.role,
+          // })) || 
+          []
         }
       ];
 

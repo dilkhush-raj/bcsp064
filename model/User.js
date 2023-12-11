@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 // Schema for Notice
 const UserSchema = new mongoose.Schema({
+  role: {
+    type: String,
+    default: 'student', 
+  },
     name: {
       type: String,
       required: true,
@@ -9,11 +13,11 @@ const UserSchema = new mongoose.Schema({
     email: String,
     image: String,
     programme: String,
-    role: {
-      type: String,
-      default: 'student', 
-    },
+    semester: Number,
     enrollment: Number,
+    mobile: Number,
+    address: String,
+    verified: Boolean,
   });
   
 

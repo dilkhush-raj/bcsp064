@@ -1,53 +1,49 @@
-import Link from "next/link";
-
+import { connectDB } from "@/utils/mongoose";
+import Notice from "@/model/Notice";
 export const revalidate = 60;
 
-async function getData({ programme }) {
-  const res = await fetch(process.env.NEXTAUTH_URL + "/api/notice/" + programme);
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+export default async function NoticeBoard({ programme }) {
+  await connectDB();
+  let notices;
+  if (programme) {
+    notices = await Notice.find({ programme: programme });
+  } else {
+    notices = await Notice.find();
   }
-
-  return res.json();
-}
-
-export default async function Notice({ programme }) {
-  const data = await getData({ programme });
-  const semesterBgColors = [
-    "bg-[#00aaff]", "bg-[#ffa939]", "bg-[#10ff90]", "bg-[#a069ff]"
-  ]
+  const textColors = [
+    "bg-[#00aaff] ",
+    "bg-[#ffa939] ",
+    "bg-[#10ff90] ",
+    "bg-[#a069ff] ",
+  ];
   return (
-    <div className="flex flex-col flex-wrap w-full bg-green-800 border-4 border-white shadow-md shadow-[#aaa]  rounded-md ">
-      <h2 className="font-bold text-2xl text-center bg-green-900 text-white p-2  ">
-        <span className="uppercase">{programme}</span> Student Notice Board
+    <div className="flex flex-col gap-2 flex-wrap w-ful ">
+      <h2 className=" text-3xl mt-2 text-center uppercase font-bold">
+        {programme} Notice Board
       </h2>
-      <div className="p-2 h-[450px] overflow-y-auto flex flex-col gap-2 ">
-        {data?.notice?.map((item, index) => {
+      <div className="p-2 h-[450px] overflow-y-auto flex mb-2 flex-col gap-2 ">
+        {notices?.map((item, index) => {
           return (
             <div
               key={item._id}
-              className="flex flex-col rounded-md bg-slate-200 w-full p-2 "
+              className="flex flex-col bg-white rounded-sm font-semibold leading-none relative border border-[#ddd] shadow-md w-full p-2 "
             >
-              <div className=" font-medium text-lg ">{item?.name}</div>
-              <div className="pl-2">{item?.description}</div>
+              <div className=" ">{item?.name}</div>
               <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">
-                {item?.semester?.map((notice, index) => (
+                {!programme ? (
+                  <div className=" uppercase  w-max  rounded-sm text-white bg-[#333]  px-[8px] py-[1px] text-sm mt-1">
+                    {item?.programme}
+                  </div>
+                ) : null}
+                {item?.semester?.map((sem, index) => (
                   <div
                     key={index}
-                    className={semesterBgColors[index] + " rounded-md py-1 px-2"}
+                    className={textColors[index] + " text-white mt-1 px-[8px] py-[1px] text-sm rounded-full"}
                   >
-                    {notice}
+                    {sem}
                   </div>
                 ))}
               </span>
-              {/* <Link
-                href={item.link}
-                className="ml-2 bg-gray-400 w-max text-sm rounded-md p-1"
-              >
-                <button>More Details</button>
-              </Link> */}
             </div>
           );
         })}

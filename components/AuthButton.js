@@ -11,31 +11,33 @@ export default function AuthButton() {
       <div className="relative">
         <div
           onClick={() => setModel(!model)}
-          className=" w-10 aspect-square cursor-pointer rounded-full overflow-hidden border-4 border-transparent hover:border-[#5552] "
+          className="  w-10 aspect-square cursor-pointer rounded-full overflow-hidden  bg-[#eee] border-4 border-transparent hover:border-[#a0a0a022] "
         >
           <img src={session?.user?.image || "/user.svg"} alt="" />
         </div>
         {model ? (
           <>
-            <div className="fixed flex flex-col justify-center items-center z-40 bg-white shadow-md rounded-md p-4 w-max top-[58px] right-1">
+            <div className=" border min-w-[250px] border-[#ddd] fixed flex pt-2 flex-col z-40 shadow-md rounded-md w-max top-[58px] right-1 overflow-hidden">
               <img
                 src={session?.user?.image || "/user.svg"}
-                className=" w-20 aspect-square rounded-full overflow-hidden "
+                className=" w-20 aspect-square ml-2 rounded-full overflow-hidden "
                 alt=""
               />
-              <b>{session?.user?.name}</b>
-              <i>{session?.user?.email}</i>
-              <Link href="/account">
-                <button className="bg-gray-300 rounded-md px-2 py-1 mt-2">
-                  Manage Your Account
-                </button>
-              </Link>
-              <button
-                onClick={() => signOut()}
-                className="bg-red-600 text-white px-2 py-1 mt-2 shadow-md rounded-md"
-              >
-                Sign out
-              </button>
+              <div className="bg-white mt-2 flex flex-col p-4 justify-center items-center">
+                <b>{session?.user?.name}</b>
+                <i>{session?.user?.email}</i>
+                <div className="flex gap-4 mt-2">
+                  <Link href="/account">
+                    <button className="bg-[#465fc8] text-white font-bold py-1 px-2 rounded-sm">Update</button>
+                  </Link>
+                  <button
+                    onClick={() => signOut()}
+                    className="bg-white border border-black font-bold py-1 px-2 rounded-sm"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </div>
             </div>
             <div
               onClick={() => setModel(!model)}
@@ -48,7 +50,12 @@ export default function AuthButton() {
   }
   return (
     <>
-      <button onClick={() => signIn()}>Sign in</button>
+      <button
+        onClick={() => signIn()}
+        className="bg-[#6a8aea] text-white font-bold py-1 px-2 rounded-full "
+      >
+        Sign In
+      </button>
     </>
   );
 }

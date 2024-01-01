@@ -19,7 +19,7 @@ export default async function Navbar() {
           ) : null}
           <HomeLink />
           {navLinks.map((link) => (
-            <div key={link.route}>
+            <div key={link.route} className="flex items-center">
               <Active href={link.route} label={link.label} />
             </div>
           ))}

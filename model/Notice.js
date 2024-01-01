@@ -6,14 +6,13 @@ const NoticeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: String,
   link: String,
   programme: String,
   semester: [String],
   date: Date,
   visible: {
     type: Boolean,
-    require: true,
+    default: true
   },
 });
 

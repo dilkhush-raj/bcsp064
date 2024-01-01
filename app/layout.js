@@ -6,6 +6,7 @@ import Navbar from "@/components/ui/Navbar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/utils/SessionProvider";
 import StyledComponentsRegistry from "@/utils/AntRegistry";
+import Script from "next/script";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -19,10 +20,14 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-
   const session = await getServerSession();
   return (
     <html lang="en">
+      <Script
+        src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+        defer
+      ></Script>
+      <Script src="/script.js" id="script"></Script>
       <body>
         <SessionProvider session={session}>
           <StyledComponentsRegistry>

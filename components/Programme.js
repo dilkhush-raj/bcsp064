@@ -22,7 +22,7 @@ export default async function SingleProgramme({ slug }) {
         return (
           <Link
             key={item._id}
-            href={"/programme/" + slug + "/" + item?.slug}
+            href={"/programme/" + slug + "/" + (index + 1)}
             className="flex flex-col justify-center "
           >
             <div className="cursor-pointer w-[120px] object-contain">

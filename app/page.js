@@ -5,18 +5,20 @@ import NoticeBoard from "@/components/Notice";
 import Programmes from "@/components/Programmes";
 import getUserData from "@/utils/user";
 import Link from "next/link";
-import Bag2 from "@/assets/bag2";
 import Marquee from "react-fast-marquee";
+import NotificationButton from "@/components/NotificationButton";
+import ServiceWorker from "@/components/ServiceWorker";
 export const revalidate = 60;
 
 export default async function Home() {
+  <ServiceWorker />
   const session = await getServerSession(authOptions);
   const data = await getUserData();
   const userProgramme = data?.user?.programme;
 
   return (
     <main className="min-h-screen ">
-      <div className="w-full relative aspect-video  max-h-[40vh] bg-contain bg-no-repeat bg-center bg-white bg-[url('/img/full_logo.png')] ">
+      <div className="w-full relative aspect-video  max-h-[40vh] bg-contain bg-no-repeat bg-center bg-[url('/img/full_logo.png')] ">
         {/* <div className="text-center font-bold text-5xl text-white absolute top-[50%] left-0 right-0 translate-y-[-50%] ">
           Welcome to IGNOU TPS Study Center
         </div> */}
@@ -37,7 +39,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <div className=" bg-white shadow-sm flex items-center border-[#ddd] border-b-2 border-t ">
+      <div className="shadow-sm flex items-center border-[#ddd] border-b-2 border-t ">
         <div className="font-bold p-2 bg-gray-100 border-r border-[#ddd] ">
           Alert:{" "}
         </div>
@@ -48,7 +50,7 @@ export default async function Home() {
           </div>
         </Marquee>
       </div>
-      <div className="grid md:grid-cols-2 bg-white  ">
+      <div className="grid md:grid-cols-2 ">
         <div className=" border-[#ddd] border-b-2">
           {session ? (
             <div className="mx-auto p-2 max-w-lg">
@@ -89,6 +91,7 @@ export default async function Home() {
           <NoticeBoard programme={userProgramme} />
         </div>
       </div>
+      <NotificationButton />
     </main>
   );
 }

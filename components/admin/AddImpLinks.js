@@ -3,7 +3,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { createLink } from "@/utils/action";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { LinkIcon } from "@/assets/icons";
+import { FaLink } from "react-icons/fa";
 
 export default function AddImpLinks() {
   const [state, formAction] = useFormState(createLink, {
@@ -24,11 +24,11 @@ export default function AddImpLinks() {
   return (
     <main className="">
       <button
-        className=" shadow-sm hover:shadow-md text-xl font-semibold p-2 sm:p-4 rounded-md border border-[#ddd] "
+        className="  shadow-sm hover:shadow-md flex items-center gap-4 text-xl font-semibold p-2 sm:p-4 rounded-md border border-[#ddd] "
         onClick={() => document.getElementById("link_modal").showModal()}
       >
-        <LinkIcon width={130} />
-        <div className="mt-2">Add Link</div>
+        <FaLink />
+        <div>Add Important Link</div>
       </button>
       <dialog id="link_modal" className="p-2 sm:p-4 rounded-md shadow-md max-w-xl">
         <h2 className="text-2xl text-center font-bold border-b-4 border-black">

@@ -5,7 +5,6 @@ export default function Bag({ colour, semester, width }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={120}
-        height={120}
         viewBox="0 0 458.1 492"
       >
         <g
@@ -673,8 +672,8 @@ export default function Bag({ colour, semester, width }) {
             data-name="Semester 3"
             transform="translate(414.95 650)"
             fill="#fff"
-            fontSize={36}
-            fontWeight={500}
+            fontSize={32}
+            fontWeight={400}
           >
             <tspan x={0} y={0}>
               {semester}

@@ -3,6 +3,9 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import AddNotice from "@/components/admin/AddNotice";
 import { CourseIcon, ProgrammeIcon } from "@/assets/icons";
 import AddImpLinks from "@/components/admin/AddImpLinks";
+import AddProgramme from "@/components/admin/AddProgramme";
+import AddCourse from "@/components/admin/AddCourse";
+import { H1 } from "@/components/ui/Headings";
 
 export default async function page() {
   const session = await getServerSession(authOptions);
@@ -21,14 +24,12 @@ export default async function page() {
 
   return (
     <main className=" p-4 min-h-screen ">
-      <h1 className="text-3xl font-bold border-b-2 border-black mb-5">
-        Admin Dashboard
-      </h1>
-        <div className="flex gap-5">
+      <div className="border-b-2 border-black mb-4"><H1>Admin</H1></div>
+        <div className="flex gap-5 flex-wrap">
         <AddNotice />
         <AddImpLinks />
-        <CourseIcon width={150} />
-        <ProgrammeIcon width={150} />
+        <AddProgramme />
+        <AddCourse />
         </div>
     </main>
   );

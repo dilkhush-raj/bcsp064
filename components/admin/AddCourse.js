@@ -3,10 +3,9 @@ import { useFormState, useFormStatus } from "react-dom";
 import { createNotice } from "@/utils/action";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { NoticeboardIcon } from "@/assets/icons";
-import { FaEnvelopeOpenText } from "react-icons/fa6";
+import { FaBook } from "react-icons/fa";
 
-export default function AddNotice() {
+export default function AddCourse() {
   const [state, formAction] = useFormState(createNotice, {
     message: "",
   });
@@ -28,8 +27,8 @@ export default function AddNotice() {
         className=" shadow-sm hover:shadow-md flex items-center gap-4 text-xl font-semibold p-2 sm:p-4 rounded-md border border-[#ddd] "
         onClick={() => document.getElementById("notice_modal").showModal()}
       >
-        <FaEnvelopeOpenText />
-        <div>Add Notice</div>
+        <FaBook />
+        <div>Add Course</div>
       </button>
       <dialog id="notice_modal" className="p-2 sm:p-4 rounded-md shadow-md max-w-xl">
         <div className="">

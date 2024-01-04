@@ -1,31 +1,33 @@
-import { website_title } from "@/utils/constant";
 import AuthButton from "../AuthButton";
-import getUserData from "@/utils/user";
-import { navLinks } from "@/utils/constant";
-import Active, { HomeLink } from "./ActiveLink";
+import ToggleNav from "./ToggleNav";
+import Sidebar from "./Sidebar";
+import Link from "next/link";
 
-export default async function Navbar() {
-  const data = await getUserData();
+export default function Navbar() {
   return (
-    <div className="flex sticky z-50 top-0 items-center justify-between p-2 shadow-md bg-[#fff]  ">
-      <div className="flex items-center gap-5">
-        <div className="sm:hidden text-2xl">=</div>
-        <div href={"/"} className="px-2 font-bold">
-          {website_title}
-        </div>
-        <nav className="hidden sm:flex items-bottom font-medium gap-2 px-2 ">
-          {data?.user?.role === "admin" ? (
-            <Active href={"/admin"} label={"Dashboard"} />
-          ) : null}
-          <HomeLink />
-          {navLinks.map((link) => (
-            <div key={link.route} className="flex items-center">
-              <Active href={link.route} label={link.label} />
-            </div>
-          ))}
-        </nav>
+    <div className="h-[60px]  shadow-sm bg-[#fff] border-b border-[#eee]">
+      <div className=" md:hidden">
+        <ToggleNav>
+          <Sidebar />
+        </ToggleNav>
       </div>
-      <AuthButton />
+
+      <div className="flex items-center justify-between p-2 pl-[50px]  ">
+        <Link href="/" className="text-2xl flex items-center gap-2">
+          <picture>
+            <img src="/logo.svg" alt="" className="w-[25px]" />
+          </picture>
+          <span className="hidden md:flex text-base font-bold leading-none">IGNOU Patna</span>
+        </Link>
+        <input
+          type="search"
+          name="q"
+          className="py-2 w-[200px] sm:w-[400px] md:w-[600px] mx-auto text-sm sm:text-lg bg-gray-200  rounded-full px-5 focus:outline-none border border-transparent focus:border-black text-gray-900 "
+          placeholder="Search..."
+        />
+
+        <AuthButton />
+      </div>
     </div>
   );
 }

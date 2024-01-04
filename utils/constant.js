@@ -1,3 +1,6 @@
+import { PiBooksFill } from "react-icons/pi";
+import { MdAccountCircle, MdOutlineHelp, MdQuestionAnswer } from "react-icons/md";
+import { FaLink } from "react-icons/fa";
 export const website_title = "TPS IGNOU Student Zone";
 export const impLinks = [
     {
@@ -75,11 +78,28 @@ export const semesterBgColors = [
 
 export const navLinks = [
   {
+    label: "Account",
+    route: "/account",
+    icon: <MdAccountCircle />
+  },
+  {
+    label: "Ask Questions",
+    route: "/ask-questions",
+    icon: <MdQuestionAnswer />
+  },
+  {
     label: "Programme",
     route: "/programme",
+    icon: <PiBooksFill />
   },
   {
     label: "Important Links",
-    route: "/imp-links"
+    route: "/imp-links",
+    icon: <FaLink />
+  },
+  {
+    label: "Help",
+    route: "/help",
+    icon: <MdOutlineHelp />
   }
 ];

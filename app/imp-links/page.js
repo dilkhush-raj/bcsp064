@@ -1,5 +1,4 @@
-import { LinkIcon } from "@/assets/icons";
-// import { impLinks } from "@/utils/constant";
+import { FaLink } from "react-icons/fa";
 import { connectDB } from "@/utils/mongoose";
 import Link from "next/link";
 import ImpLink from "@/model/ImpLink";
@@ -15,8 +14,8 @@ export default async function ImpLinks() {
       </h1>
       <div className="flex flex-col gap-2 p-2">
         {data?.map((link) => (
-          <Link href={link.link} key={link._id} className=" flex w-max ">
-            <LinkIcon width={20} />
+          <Link href={link.link} key={link._id} className=" flex items-center gap-2 w-max ">
+            <FaLink />
             <span>{link.name}</span>
           </Link>
         ))}

@@ -1,5 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import User from "@/model/User";
+import { connectDB } from "./mongoose";
 export const revalidate = 60;
 
 async function getData({ email }) {
@@ -12,10 +14,12 @@ async function getData({ email }) {
 }
 
 const userData = async () => {
+  await connectDB();
   const session = await getServerSession(authOptions);
   if (!session) return false;
   const email = session?.user?.email;
-  const data = await getData({ email });
+  const data = await User.findOne({email:email})
+  // const data = await getData({ email });
   return data;
 };
 

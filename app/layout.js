@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/ui/Footer";
 import { website_title } from "@/utils/constant";
 import Navbar from "@/components/ui/Navbar";
+import Sidebar from "@/components/ui/Sidebar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/utils/SessionProvider";
 import StyledComponentsRegistry from "@/utils/AntRegistry";
@@ -28,15 +29,20 @@ export default async function RootLayout({ children }) {
         defer
       ></Script>
       <Script src="/script.js" id="script"></Script>
-      <body>
+      <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" sizes="any" />
+      <body className={poppins.className} >
         <SessionProvider session={session}>
           <StyledComponentsRegistry>
-            <div className="max-w-[1600px] mx-auto ">
-              <Navbar />
-              {children}
+          <Navbar />
+          <div className="grid md:grid-cols-[200px_1fr] ">
+            <div className="hidden md:flex flex-col justify-between">
+              <Sidebar />
             </div>
-
-            <Footer />
+            <div className="h-[calc(100vh-60px)] overflow-x-auto">
+              {children}
+              <Footer />
+            </div>
+          </div>
           </StyledComponentsRegistry>
         </SessionProvider>
       </body>

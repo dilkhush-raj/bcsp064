@@ -8,39 +8,48 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import NotificationButton from "@/components/NotificationButton";
 import ServiceWorker from "@/components/ServiceWorker";
+import { H2 } from "@/components/ui/Headings";
 export const revalidate = 60;
 
 export default async function Home() {
-  <ServiceWorker />
+  <ServiceWorker />;
   const session = await getServerSession(authOptions);
   const data = await getUserData();
-  const userProgramme = data?.user?.programme;
+  const userProgramme = data?.programme;
 
   return (
     <main className="min-h-screen ">
-      <div className="w-full relative aspect-video  max-h-[40vh] bg-contain bg-no-repeat bg-center bg-[url('/img/full_logo.png')] ">
+      <div className="w-full relative aspect-video  max-h-[40vh] bg-cover bg-no-repeat bg-center bg-[url('/banner.svg')] ">
         {/* <div className="text-center font-bold text-5xl text-white absolute top-[50%] left-0 right-0 translate-y-[-50%] ">
           Welcome to IGNOU TPS Study Center
         </div> */}
+        <div className="absolute top-5 right-0">
+          
+      <NotificationButton />
+        </div>
         <div className=" flex gap-2 absolute bottom-2 right-2">
           <Link href={"#"} target="_blank">
-            <img
-              src="/img/whatsapp.svg"
-              alt=""
-              className="w-10 aspect-square"
-            />
+            <picture>
+              <img
+                src="/img/whatsapp.svg"
+                alt=""
+                className="w-10 aspect-square"
+              />
+            </picture>
           </Link>
           <Link href={"#"} target="_blank">
-            <img
-              src="/img/telegram.svg"
-              alt=""
-              className="w-10 aspect-square"
-            />
+            <picture>
+              <img
+                src="/img/telegram.svg"
+                alt=""
+                className="w-10 aspect-square"
+              />
+            </picture>
           </Link>
         </div>
       </div>
-      <div className="shadow-sm flex items-center border-[#ddd] border-b-2 border-t ">
-        <div className="font-bold p-2 bg-gray-100 border-r border-[#ddd] ">
+      <div className="shadow-sm flex items-center border-[#ddd] border-b-2 ">
+        <div className="font-bold p-2 bg-[#222] text-white border-r border-[#ddd] ">
           Alert:{" "}
         </div>
         <Marquee pauseOnHover={true} autoFill={true}>
@@ -55,20 +64,18 @@ export default async function Home() {
           {session ? (
             <div className="mx-auto p-2 max-w-lg">
               <div className="flex flex-col pt-4">
-                <div className="font-bold text-2xl">
-                  Welcome {session.user.name}
-                </div>
+                <H2>Welcome {session.user.name}</H2>
                 <div>
                   <b>Enrolment: </b>
-                  <span>{data.user.enrollment}</span>
+                  <span>{data?.enrollment}</span>
                 </div>
                 <div>
                   <b>Programme: </b>
-                  <span className=" uppercase">{data.user.programme}</span>
+                  <span className=" uppercase">{data?.programme}</span>
                 </div>
                 <div>
                   <b>Email: </b>
-                  <span>{data.user.email}</span>
+                  <span>{data?.email}</span>
                 </div>
               </div>
               <br />
@@ -91,7 +98,6 @@ export default async function Home() {
           <NoticeBoard programme={userProgramme} />
         </div>
       </div>
-      <NotificationButton />
     </main>
   );
 }

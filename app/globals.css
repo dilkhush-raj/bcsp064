@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
 *::-webkit-scrollbar {
   width: 7px;
   background: #fff;
@@ -19,6 +13,12 @@
   width: 7px;
 }
 
+* {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 input {
   padding: 4px 2px;
   border: 1px solid black;
@@ -28,31 +28,6 @@ input {
 dialog {
   width: auto;
 }
-
-/* .profile-bg {
-  --s: 50px;
-  --c1: #aaccb1;
-  --c2: #d3e2b6;
-
-  background: conic-gradient(at 25% 25%, #0000 75%, var(--c1) 0) 0
-      calc(3 * var(--s) / 4),
-    conic-gradient(#0000 75%, var(--c2) 0) calc(var(--s) / -8)
-      calc(5 * var(--s) / 8),
-    conic-gradient(at 25% 75%, var(--c1) 25%, var(--c2) 0);
-  background-size: var(--s) var(--s);
-} */
-
-/* .profile-bg {
-  --s: 20px;
-  
-  --c: #0000 75%,#292522 0;
-  --g1: conic-gradient(at 75% 25%,var(--c));
-  --g2: conic-gradient(at 25% 75%,var(--c));
-  background: 
-    var(--g1),var(--g1) var(--s) var(--s),
-    var(--g2),var(--g2) var(--s) var(--s) #EFD9B4;
-  background-size: calc(2*var(--s)) calc(2*var(--s));
-} */
 
 .profile-bg {
   background-color: #e5e5f7;

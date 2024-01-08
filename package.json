@@ -11,7 +11,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
     "antd": "^5.11.0",
-    "axios": "^1.6.0",
+    "axios": "^1.6.5",
     "excellentexport": "^3.9.6",
     "formik": "^2.4.5",
     "json-as-xlsx": "^2.5.6",

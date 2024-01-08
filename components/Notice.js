@@ -29,7 +29,7 @@ export default async function NoticeBoard({ programme }) {
           return (
             <div
               key={item._id}
-              className="flex flex-col bg-white rounded-sm font-semibold leading-none relative border border-[#ddd] shadow-md w-full p-2 "
+              className="flex flex-col bg-white rounded-md font-semibold leading-none relative border border-[#ddd] shadow-sm w-full p-2 "
             >
               <div className=" ">{item?.name}</div>
               <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">

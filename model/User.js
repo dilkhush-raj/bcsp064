@@ -15,7 +15,9 @@ const UserSchema = new mongoose.Schema({
     programme: String,
     semester: Number,
     enrollment: Number,
+    enrolment: Number,
     mobile: Number,
+    email2: String,
     address: String,
     verified: Boolean,
   });

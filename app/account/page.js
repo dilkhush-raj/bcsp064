@@ -3,6 +3,7 @@ import getUserData from "@/utils/user";
 import { H1, H2 } from "@/components/ui/Headings";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+export const revalidate = 60;
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -10,14 +11,18 @@ const Page = async () => {
 
   return (
     <main className="min-h-screen p-2 md:p-4">
-      <div className="border-b-2 border-black uppercase"><H1>Account</H1></div>
+      <div className="border-b-2 border-black uppercase">
+        <H1>Account</H1>
+      </div>
       {session ? (
         <div className="p-2 max-w-lg">
           <div className="flex flex-col">
             <picture>
               <img src={session?.user?.image} className="rounded-md" alt="" />
             </picture>
-            <div><b>Name: </b> {session.user.name}</div>
+            <div>
+              <b>Name: </b> {session.user.name}
+            </div>
             <div>
               <b>Enrolment: </b>
               <span>{data?.enrollment}</span>
@@ -30,8 +35,21 @@ const Page = async () => {
               <b>Email: </b>
               <span>{data?.email}</span>
             </div>
+            <div>
+              <b>Alternate Email: </b>
+              <span>{data?.email2 || "Please Update"}</span>
+            </div>
+            <div>
+              <b>Mobile: </b>
+              <span>{data?.mobile || "Please Update"}</span>
+            </div>
+            <div>
+              <b>Address: </b>
+              <span>{data?.address || "Please Update"}</span>
+            </div>
           </div>
           <br />
+          <Link href={"/account/update"}><button>Update</button></Link>
         </div>
       ) : (
         <div>Please Login</div>

@@ -1,16 +1,16 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+
 import AddNotice from "@/components/admin/AddNotice";
-import { CourseIcon, ProgrammeIcon } from "@/assets/icons";
 import AddImpLinks from "@/components/admin/AddImpLinks";
 import AddProgramme from "@/components/admin/AddProgramme";
 import AddCourse from "@/components/admin/AddCourse";
 import { H1 } from "@/components/ui/Headings";
+import getUserData from "@/utils/user";
 
 export default async function page() {
-  const session = await getServerSession(authOptions);
 
-  if (session?.user?.role !== "admin") {
+  const data = await getUserData();
+
+  if (data?.role !== "admin") {
     return (
       <section className="py-24 min-h-screen">
         <div className="container">

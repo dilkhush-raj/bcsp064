@@ -31,7 +31,6 @@ dialog {
 
 .profile-bg {
   background-color: #e5e5f7;
-  opacity: 0.8;
   background-image: radial-gradient(#000000 0.7px, #8ca0f7 0.5px);
   background-size: 10px 10px;
 }

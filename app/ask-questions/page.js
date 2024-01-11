@@ -1,11 +1,22 @@
-import { H1 } from "@/components/ui/Headings";
+"use client"
+import Trix from "@/components/Trix";
+import { useState } from "react";
 
-const askQuestion = () => {
-    return(
-        <main className="min-h-screen">
-            <H1>Ask Questions</H1>
-        </main>
-    )
-}
+export default function AskQuestions(){
+    const [content, setContent] = useState('');
 
-export default askQuestion;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Access the content here
+    // Send content to your database
+};
+console.log(content);
+  return (
+    <main className="min-h-screen">
+      <h1 className="text-3xl my-4 mx-2 border-b-2 border-black capitalize font-bold">
+        Ask Questions
+      </h1>
+        <Trix  value={content} onChange={setContent} />
+    </main>
+  );
+};

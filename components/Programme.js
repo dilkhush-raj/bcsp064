@@ -17,7 +17,7 @@ export default async function SingleProgramme({ slug }) {
   ];
 
   return (
-    <div className="flex flex-wrap gap-4 ">
+    <div className="flex flex-wrap gap-4 justify-center md:justify-start  ">
       {data?.semesters?.map((item, index) => {
         return (
           <Link

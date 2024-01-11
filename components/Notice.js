@@ -19,13 +19,12 @@ export default async function NoticeBoard({ programme }) {
   ];
   return (
     <div className="flex flex-col gap-2 flex-wrap w-ful ">
-      {/* <h2 className=" text-3xl mt-2 text-center uppercase font-bold">
+      <h2 className=" text-3xl mt-2 mx-2 border-b-2 border-black uppercase font-bold">
         {programme} Notice Board
-      </h2> */}
-      <H2><span className="uppercase">{programme}</span> Notice Board</H2>
+      </h2>
       {/* <Heading text={} /> */}
       <div className="p-2 h-[450px] overflow-y-auto flex mb-2 flex-col gap-2 ">
-        {notices?.map((item, index) => {
+        {notices?.map((item) => {
           return (
             <div
               key={item._id}

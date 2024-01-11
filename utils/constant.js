@@ -93,8 +93,8 @@ export const navLinks = [
     icon: <PiBooksFill />
   },
   {
-    label: "Important Links",
-    route: "/imp-links",
+    label: "Quick Links",
+    route: "/quick-links",
     icon: <FaLink />
   },
   {

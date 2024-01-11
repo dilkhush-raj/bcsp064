@@ -12,21 +12,21 @@ export default function Heading({children}) {
 }
 export function H1({ children }) {
   return (
-    <h1 className={crimson.className + "text-3xl  md:text-4xl capitalize font-bold"}>
+    <h1 className={ "text-3xl capitalize font-bold"}>
       {children}
     </h1>
   );
 }
 export function H2({ children }) {
   return (
-    <h2 className={crimson.className + "text-2xl  capitalize font-bold"}>
+    <h2 className={ "text-3xl  capitalize font-bold"}>
       {children}
     </h2>
   );
 }
 export function H3({ children }) {
   return (
-    <h3 className={crimson.className + "text-xl md:text-2xl capitalize font-bold"}>
+    <h3 className={ " text-2xl capitalize font-bold"}>
       {children}
     </h3>
   );

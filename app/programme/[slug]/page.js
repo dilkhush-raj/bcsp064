@@ -8,10 +8,12 @@ export default async function SingleProgrammePage({ params }) {
 
   return (
     <main className="min-h-screen">
-      <h1 className=" uppercase pl-10 p-2 text-3xl font-bold">{slug}</h1>
       <div className="grid md:grid-cols-2 p-2 sm:p-5 gap-10 ">
         <div className="max-w-lg">
-        <SingleProgramme slug={slug} />
+          <h1 className=" text-3xl mt-2 mb-4 mx-2 border-b-2 border-black uppercase font-bold">
+            {slug}
+          </h1>
+          <SingleProgramme slug={slug} />
         </div>
         <Notice programme={slug} />
       </div>

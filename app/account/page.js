@@ -16,9 +16,9 @@ const Page = async () => {
       </div>
       {session ? (
         <div className="p-2 max-w-lg">
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             <picture>
-              <img src={session?.user?.image} className="rounded-md" alt="" />
+              <img src={session?.user?.image} className="rounded-md my-1 " alt="" />
             </picture>
             <div>
               <b>Name: </b> {session.user.name}
@@ -49,7 +49,7 @@ const Page = async () => {
             </div>
           </div>
           <br />
-          <Link href={"/account/update"}><button>Update</button></Link>
+          <Link href={"/account/update"}><button className="bg-[#465fc8] text-white font-bold py-1 px-2 rounded-md" >Update</button></Link>
         </div>
       ) : (
         <div>Please Login</div>

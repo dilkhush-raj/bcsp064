@@ -6,7 +6,7 @@ import Programmes from "@/components/Programmes";
 import getUserData from "@/utils/user";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
-import NotificationButton from "@/components/NotificationButton";
+// import NotificationButton from "@/components/NotificationButton";
 import ServiceWorker from "@/components/ServiceWorker";
 import { H2 } from "@/components/ui/Headings";
 export const revalidate = 60;
@@ -25,7 +25,7 @@ export default async function Home() {
         </div> */}
         <div className="absolute top-5 right-0">
           
-      <NotificationButton />
+      {/* <NotificationButton /> */}
         </div>
         <div className=" flex gap-2 absolute bottom-2 right-2">
           <Link href={"#"} target="_blank">

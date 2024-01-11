@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FaBrain } from "react-icons/fa6";
+import { FaPenNib } from "react-icons/fa6";
 import AuthButton from "./AuthButton";
 import { IoClose } from "react-icons/io5";
 import { BiMenuAltLeft } from "react-icons/bi";
@@ -29,7 +29,7 @@ export default function Navbar({ isAdmin }) {
           }`}
         >
           <div className="grid grid-cols-[auto_1fr] h-full">
-            <div className="bg-white h-full">
+            <div className="bg-white shadow-md border-r-2 border-[#ccc] h-full">
               <div className="flex flex-col justify-between h-full">
                 <div>
                   <div className="py-4 ">
@@ -66,9 +66,9 @@ export default function Navbar({ isAdmin }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between h-[60px]  shadow-sm bg-[#fff] border-b border-[#eee] p-4 pl-[50px]  ">
+      <div className="flex items-center justify-between h-[60px]  shadow-sm bg-[#fff] border-b border-[#eee] p-4 pl-[50px] md:pl-[20px]  ">
         <Link href="/" className="text-2xl flex items-center gap-2">
-          <FaBrain />
+          <FaPenNib />
           <span className="flex text-base font-semibold leading-none">
             IGNOU Patna
           </span>

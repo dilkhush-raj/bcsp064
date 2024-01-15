@@ -24,8 +24,7 @@ export default async function Home() {
           Welcome to IGNOU TPS Study Center
         </div> */}
         <div className="absolute top-5 right-0">
-          
-      {/* <NotificationButton /> */}
+          {/* <NotificationButton /> */}
         </div>
         <div className=" flex gap-2 absolute bottom-2 right-2">
           <Link href={"#"} target="_blank">
@@ -48,7 +47,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <div className="shadow-sm flex items-center border-[#ddd] border-b-2 ">
+      <div className="shadow-sm flex items-center border-[#222] border-2 ">
         <div className="font-bold p-2 bg-[#222] text-white border-r border-[#ddd] ">
           Alert:{" "}
         </div>
@@ -59,7 +58,8 @@ export default async function Home() {
           </div>
         </Marquee>
       </div>
-      <div className="grid md:grid-cols-2 ">
+
+      {/* <div className="grid md:grid-cols-2 ">
         <div className=" border-[#ddd] border-b-2">
           {session ? (
             <div className="mx-auto p-2 max-w-lg">
@@ -97,6 +97,41 @@ export default async function Home() {
         >
           <NoticeBoard programme={userProgramme} />
         </div>
+      </div> */}
+
+      <div className="max-w-4xl">
+        {session ? (
+          <div className=" ">
+            <div className="flex flex-col p-2 pt-4">
+              <H2>Welcome {session.user.name}</H2>
+              <div>
+                <b>Enrolment: </b>
+                <span>{data?.enrollment}</span>
+              </div>
+              <div>
+                <b>Programme: </b>
+                <span className=" uppercase">{data?.programme}</span>
+              </div>
+              <div>
+                <b>Email: </b>
+                <span>{data?.email}</span>
+              </div>
+            </div>
+            <br />
+            <div className="m-2">
+              <h2 className="text-3xl mb-4 border-b-2 border-black uppercase font-bold">{userProgramme}</h2>
+              <SingleProgramme slug={userProgramme} />
+            </div>
+          </div>
+        ) : (
+          <>
+            <h2 className="text-3xl mt-2 mx-2 border-b-2 border-black uppercase font-bold">
+              All Programmes
+            </h2>
+            <Programmes />
+          </>
+        )}
+        <NoticeBoard programme={userProgramme} />
       </div>
     </main>
   );

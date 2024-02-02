@@ -1,7 +1,7 @@
 import { PiLinkSimpleBold } from "react-icons/pi";
 import { connectDB } from "@/utils/mongoose";
 import Link from "next/link";
-import ImpLink from "@/model/ImpLink";
+import ImpLink from "@/model/impLink.model";
 
 export default async function ImpLinks() {
   await connectDB();  

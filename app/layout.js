@@ -5,7 +5,6 @@ import { website_title } from "@/utils/constant";
 import Sidebar from "@/components/ui/Sidebar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/utils/SessionProvider";
-import StyledComponentsRegistry from "@/utils/AntRegistry";
 import Script from "next/script";
 import Nav from "@/components/Nav";
 
@@ -32,7 +31,6 @@ export default async function RootLayout({ children }) {
       <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" sizes="any" />
       <body className={poppins.className} >
         <SessionProvider session={session}>
-          <StyledComponentsRegistry>
           <Nav />
           <div className="grid md:grid-cols-[200px_1fr] ">
             <div className="hidden md:flex flex-col justify-between">
@@ -43,7 +41,6 @@ export default async function RootLayout({ children }) {
               <Footer />
             </div>
           </div>
-          </StyledComponentsRegistry>
         </SessionProvider>
       </body>
     </html>

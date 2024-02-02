@@ -9,11 +9,7 @@ const NoticeSchema = new mongoose.Schema({
   link: String,
   programme: String,
   semester: [String],
-  date: Date,
-  visible: {
-    type: Boolean,
-    default: true
-  },
+  createdOn: { type: Date, default: Date.now },
 });
 
 mongoose.models = {};

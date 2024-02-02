@@ -7,7 +7,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 export default async function Sidebar() {
   const data = await getUserData();
   return (
-    <div className="flex flex-col justify-between h-full border-r-2 border-t bg-white shadow-sm border-[#eee]">
+    <div className="flex flex-col justify-between h-full border-r-1 border-t bg-white shadow-md border-[#eee]">
         <div>
           <div className="py-4 ">
             <nav className="flex flex-col items-bottom font-medium gap-3 px-2 ">
@@ -29,9 +29,6 @@ export default async function Sidebar() {
               ))}
             </nav>
           </div>
-        </div>
-        <div className="font-bold border-t-2 border-[#ddd] p-2 text-sm">
-          &copy;{website_title} {new Date().getFullYear()}
         </div>
       
     </div>

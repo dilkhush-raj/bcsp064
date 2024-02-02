@@ -1,16 +1,22 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import Notice from "@/model/Notice";
-import ImpLink from "@/model/ImpLink";
+import ImpLink from "@/model/impLink.model";
 import { connectDB } from "./mongoose";
 import { z } from "zod"
 
 export async function createNotice(prevState, formData) {
   const schema = z.object({
     name: z.string().min(3),
+    programme: z.string(),
+    semester: z.array(z.string()).min(1),
+    link: z.string(),
   });
   const parse = schema.safeParse({
     name: formData.get("name"),
+    programme: formData.get("programme"),
+    semester: formData.getAll("cycle"),
+    link: formData.get("link"),
   });
   if (!parse.success) {
     console.log(parse.error);

@@ -29,7 +29,7 @@ export default function Navbar({ isAdmin }) {
           }`}
         >
           <div className="grid grid-cols-[auto_1fr] h-full">
-            <div className="bg-white shadow-md border-r-2 border-[#ccc] h-full">
+            <div className="bg-white border-r-1 shadow-md border-[#eee] h-full">
               <div className="flex flex-col justify-between h-full">
                 <div>
                   <div className="py-4 ">
@@ -56,9 +56,9 @@ export default function Navbar({ isAdmin }) {
                     </nav>
                   </div>
                 </div>
-                <div className="font-bold p-2 text-sm">
+                {/* <div className="font-bold p-2 text-sm">
                   &copy;{website_title} {new Date().getFullYear()}
-                </div>
+                </div> */}
               </div>
             </div>
             <div onClick={() => setToggle(!toggle)} className="w-full"></div>

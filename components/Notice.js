@@ -1,9 +1,12 @@
 import { connectDB } from "@/utils/mongoose";
 import Notice from "@/model/Notice";
-import Heading, { H2 } from "./ui/Headings";
+import getUserData from "@/utils/user";
+import DeleteNoticeButton from "./ui/deleteNotice";
 export const revalidate = 60;
 
 export default async function NoticeBoard({ programme }) {
+  const user = await getUserData();
+  const isAdmin = user?.role === "admin" || false;
   await connectDB();
   let notices;
   if (programme) {
@@ -16,7 +19,12 @@ export default async function NoticeBoard({ programme }) {
     "bg-[#ffa939] ",
     "bg-[#10ff90] ",
     "bg-[#a069ff] ",
+    "bg-[#00aaff] ",
+    "bg-[#ffa939] ",
+    "bg-[#10ff90] ",
+    "bg-[#a069ff] ",
   ];
+
   return (
     <div className="flex flex-col gap-2 flex-wrap w-ful ">
       <h2 className=" text-3xl mt-2 mx-2 border-b-2 border-black uppercase font-bold">
@@ -25,27 +33,58 @@ export default async function NoticeBoard({ programme }) {
       {/* <Heading text={} /> */}
       <div className="p-2 min-h-[450px] overflow-y-auto flex mb-2 flex-col gap-2 ">
         {notices?.map((item) => {
+          const id = item._id.toString();
+          function getDateFormatted(dateString) {
+            // Assuming your `dateString` is in a consistent format
+            const dateObject = new Date(dateString);
+
+            // Format only the date, month name, and year
+            const options = {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            };
+            const formattedDate = dateObject.toLocaleDateString(
+              "en-IN",
+              options
+            );
+
+            return formattedDate;
+          }
+          const utcTime = item?.createdOn;
+          const formattedDate = getDateFormatted(utcTime);
           return (
             <div
               key={item._id}
-              className="flex flex-col bg-white rounded-md leading-none relative border border-[#ddd] shadow-sm hover:shadow-md cursor-pointer w-full p-2 "
+              className="flex items-center bg-white rounded-md leading-none relative border border-[#ddd] shadow-sm hover:shadow-md w-full  "
             >
-              <div className=" ">{item?.name}</div>
-              <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">
-                {!programme ? (
-                  <div className=" uppercase  w-max  rounded-sm text-white bg-[#333]  px-[8px] py-[1px] text-sm mt-1">
-                    {item?.programme}
-                  </div>
-                ) : null}
-                {item?.semester?.map((sem, index) => (
-                  <div
-                    key={index}
-                    className={textColors[index] + " text-white mt-1 px-[8px] py-[1px] text-sm rounded-full"}
-                  >
-                    {sem}
-                  </div>
-                ))}
-              </span>
+              <div className="text-sm absolute top-[-7px] right-2 rounded-full bg-white px-2 leading-none">
+                {formattedDate}
+              </div>
+              {!programme && item?.programme ? (
+                <div className=" uppercase h-full  w-max font-bold  rounded-sm  px-[8px] py-[1px] text-md">
+                  {item?.programme}
+                </div>
+              ) : null}
+              <div className="p-2 w-full">
+                <div className=" ">{item?.name}</div>
+                <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">
+                  {item?.semester?.map((sem, index) => (
+                    <div
+                      key={index}
+                      className={
+                        textColors[index] +
+                        " text-white mt-1 px-[8px] py-[1px] text-sm rounded-full"
+                      }
+                    >
+                      {sem}
+                    </div>
+                  ))}
+                </span>
+              </div>
+              {isAdmin ? (
+                <DeleteNoticeButton id={id} />
+              ) : null}
             </div>
           );
         })}

@@ -19,10 +19,25 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+body {
+  background-color: #eff3fa;
+  background-image: linear-gradient(315deg, #eff3fa 0%, #fbfcfc 74%);
+}
+
 input {
   padding: 4px 2px;
-  border: 1px solid black;
+  border: 1px solid #ddd;
   width: 100%;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+textarea {
+  padding: 4px 2px;
+  border: 1px solid #ddd;
+  width: 100%;
+  background-color: #eee;
+  border-radius: 4px;
 }
 
 dialog {
@@ -30,7 +45,7 @@ dialog {
 }
 
 .profile-bg {
-  background-color: #e5e5f7;
-  background-image: radial-gradient(#000000 0.7px, #8ca0f7 0.5px);
+  background-color: #bbb;
+  background-image: radial-gradient(#ffffff 0.7px, #333 0.5px);
   background-size: 10px 10px;
 }

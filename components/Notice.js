@@ -31,7 +31,7 @@ export default async function NoticeBoard({ programme }) {
         {programme} Notice Board
       </h2>
       {/* <Heading text={} /> */}
-      <div className="p-2 min-h-[450px] overflow-y-auto flex mb-2 flex-col gap-2 ">
+      <div className="p-2 min-h-[450px] overflow-y-auto flex  flex-col gap-3 ">
         {notices?.map((item) => {
           const id = item._id.toString();
           function getDateFormatted(dateString) {
@@ -56,19 +56,19 @@ export default async function NoticeBoard({ programme }) {
           return (
             <div
               key={item._id}
-              className="flex items-center bg-white rounded-md leading-none relative border border-[#ddd] shadow-sm hover:shadow-md w-full  "
+              className="flex  bg-white rounded-md leading-none min-h-0 relative border border-[#ddd] shadow-sm hover:shadow-md w-full  "
             >
               <div className="text-sm absolute top-[-7px] right-2 rounded-full bg-white px-2 leading-none">
                 {formattedDate}
               </div>
               {!programme && item?.programme ? (
-                <div className=" uppercase h-full  w-max font-bold  rounded-sm  px-[8px] py-[1px] text-md">
+                <div className=" uppercase bg-[#ddd] w-max font-bold flex items-center rounded-sm  px-[8px] text-md">
                   {item?.programme}
                 </div>
               ) : null}
               <div className="p-2 w-full">
                 <div className=" ">{item?.name}</div>
-                <span className=" text-sm flex flex-wrap gap-2 w-max  ml-2 mt-1">
+                <span className=" text-sm flex flex-wrap gap-2 w-max mt-1">
                   {item?.semester?.map((sem, index) => (
                     <div
                       key={index}

@@ -22,13 +22,13 @@ export default function AskQuestion() {
   }, [state.message]);
 
   return (
-    <main className="">
+    <main className="flex-1">
       <button
-        className="  shadow-sm hover:shadow-md flex items-center gap-4 text-xl font-semibold p-2 sm:p-4 rounded-md border border-[#ddd] "
+        className="  shadow-sm hover:shadow-md flex items-center gap-2 text-xl font-semibold p-2 rounded-md border border-[#ddd] "
         onClick={() => document.getElementById("question_modal").showModal()}
       >
         <BsPatchQuestionFill />
-        <div>Ask Question</div>
+        <div>Ask</div>
       </button>
       <dialog
         id="question_modal"

@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export default async function UpdateAccounts() {
   const data = await getUserData();
-  // TODO: Add validations
   return (
     <main className="min-h-screen p-2 md:p-4">
       <h1 className="text-center text-3xl font-bold p-2 mb-5 m-auto max-w-4xl">
@@ -67,11 +66,11 @@ export default async function UpdateAccounts() {
           />
         </div>
         <div className="flex justify-end gap-5">
-          <button type="submit" className="">
+          <button type="submit" className="bg-[#465fc8] hover:bg-[#394ea4] text-white font-bold py-1 px-2 rounded-md">
             Submit
           </button>
           <Link href={"/account"}>
-            <button>Cancel</button>
+            <button className="bg-[#f84343] hover:bg-[#e13939] text-white font-bold py-1 px-2 rounded-md">Cancel</button>
           </Link>
         </div>
       </form>

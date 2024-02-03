@@ -7,7 +7,6 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { useState } from "react";
 import { navLinks } from "@/utils/constant";
 import ActiveLink, { HomeLink } from "./ui/ActiveLink";
-import { website_title } from "@/utils/constant";
 import { MdAdminPanelSettings } from "react-icons/md";
 
 export default function Navbar({ isAdmin }) {
@@ -56,9 +55,6 @@ export default function Navbar({ isAdmin }) {
                     </nav>
                   </div>
                 </div>
-                {/* <div className="font-bold p-2 text-sm">
-                  &copy;{website_title} {new Date().getFullYear()}
-                </div> */}
               </div>
             </div>
             <div onClick={() => setToggle(!toggle)} className="w-full"></div>
@@ -68,9 +64,11 @@ export default function Navbar({ isAdmin }) {
 
       <div className="flex items-center justify-between h-[60px]  shadow-sm bg-[#fff] border-b border-[#eee] p-4 pl-[50px] md:pl-[20px]  ">
         <Link href="/" className="text-2xl flex items-center gap-2">
-          <FaPenNib />
+          <picture>
+            <img src="/logo.png" className="w-[40px] aspect-square" alt="" />
+          </picture>
           <span className="flex text-base font-semibold leading-none">
-            IGNOU Patna
+            IGNOU Patna Student Corner
           </span>
         </Link>
         <AuthButton />

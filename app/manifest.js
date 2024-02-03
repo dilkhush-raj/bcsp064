@@ -1,17 +1,17 @@
 export default function manifest() {
   return {
     id: "/",
-    name: "IGNOU TPS Patna",
-    short_name: "IGNOU Patna",
+    name: "IGNOU Patna Student Corner",
+    short_name: "IPSC",
     description: "IGNOU Patna",
     start_url: "/",
     display: "standalone",
-    background_color: "#ddd",
-    theme_color: "#222",
+    background_color: "#fff",
+    theme_color: "#fff",
     orientation: "portrait",
     icons: [
       {
-        src: "/favicon.svg",
+        src: "/logo.png",
         sizes: "any",
       },
     ],
@@ -24,7 +24,6 @@ export default function manifest() {
     {
       src: "/screenshot-mobile.jpeg",
       sizes: "469x833",
-      // form_factor: "wide"  // or you can omit the form_factor property
     }
   ]
   };

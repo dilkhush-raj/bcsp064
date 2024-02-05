@@ -2,18 +2,34 @@ import { connectDB } from "@/utils/mongoose";
 import Notice from "@/model/Notice";
 import getUserData from "@/utils/user";
 import DeleteNoticeButton from "./ui/deleteNotice";
+import Link from "next/link";
 export const revalidate = 60;
 
 export default async function NoticeBoard({ programme }) {
   const user = await getUserData();
   const isAdmin = user?.role === "admin" || false;
   await connectDB();
+
+  const totalRecords = await Notice.countDocuments();
+  const limit = 5;
+  const page = 1;
+  const skip = (page - 1) * limit;
+  const notice = await Notice.find()
+    .sort({ createdOn: -1 })
+    .skip(skip)
+    .limit(5);
+
   let notices;
   if (programme) {
-    notices = await Notice.find({ programme: programme });
+    notices = await Notice.find({ programme: programme })
+    .sort({ createdOn: -1 })
+    .skip(skip)
+    .limit(5);
   } else {
-    notices = await Notice.find();
+    notices = await Notice.find().sort({ createdAt: -1 }).skip(skip).limit(5);
+    // notices = await Notice.find().sort({ createdOn: -1 }).limit(limit);
   }
+
   const textColors = [
     "bg-[#00aaff] ",
     "bg-[#ffa939] ",
@@ -58,7 +74,7 @@ export default async function NoticeBoard({ programme }) {
               key={item._id}
               className="flex  bg-white rounded-md leading-none min-h-0 relative border border-[#ddd] shadow-sm hover:shadow-md w-full  "
             >
-              <div className="text-sm absolute top-[-7px] right-2 rounded-full bg-white px-2 leading-none">
+              <div className="text-xs py-[2px] absolute top-[-8px] border border-[#ddd] right-2 rounded-full bg-white px-2 leading-none">
                 {formattedDate}
               </div>
               {!programme && item?.programme ? (
@@ -68,22 +84,34 @@ export default async function NoticeBoard({ programme }) {
               ) : null}
               <div className="p-2 w-full">
                 <div className=" ">{item?.name}</div>
-                <span className=" text-sm flex flex-wrap gap-2 w-max mt-1">
-                  {item?.semester?.map((sem, index) => (
-                    <div
-                      key={index}
-                      className={
-                        textColors[index] +
-                        " text-white mt-1 px-[8px] py-[1px] text-sm rounded-full"
-                      }
-                    >
-                      {sem}
-                    </div>
-                  ))}
-                </span>
+                <div className="flex gap-2">
+                  <span className=" text-sm flex flex-wrap gap-2 w-max mt-1">
+                    {item?.semester?.map((sem, index) => (
+                      <div
+                        key={index}
+                        className={
+                          textColors[index] +
+                          " text-white mt-1 px-[8px] py-[1px] text-sm rounded-full"
+                        }
+                      >
+                        {sem}
+                      </div>
+                    ))}
+                  </span>
+                  {item.link ? (
+                    <Link href={item.link} target="_blank" className="flex items-center">
+                      <span className="bg-[#eee] mt-1 px-[8px] py-[1px] text-sm cursor-pointer rounded-full">
+                        Details
+                      </span>
+                    </Link>
+                  ) : null}
+                </div>
               </div>
+
               {isAdmin ? (
-                <DeleteNoticeButton id={id} />
+                <div className="flex items-center justify-center">
+                  <DeleteNoticeButton id={id} />
+                </div>
               ) : null}
             </div>
           );

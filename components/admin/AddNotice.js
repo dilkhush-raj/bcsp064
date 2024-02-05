@@ -73,7 +73,6 @@ export default function AddNotice() {
                 id="link"
                 name="link"
                 className="input input-bordered w-full"
-                required
               />
             </div>
             <div className="form-control w-full">
@@ -90,7 +89,7 @@ export default function AddNotice() {
               <label htmlFor="cycle">Semester</label>
               <div className="flex gap-2 flex-wrap items-center">
               {cycle.map((item, index) => (
-                <div key={index} className="flex items-center p-2 w-[130px] bg-[#eee] rounded-md ">
+                <div key={index} className="flex items-center p-2 w-[135px] bg-[#eee] rounded-md ">
                   <input
                     type="checkbox"
                     id={`cycle-${index}`}

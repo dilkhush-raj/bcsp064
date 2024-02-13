@@ -2,9 +2,10 @@ import Link from "next/link";
 import { connectDB } from "@/utils/mongoose";
 import Programme from "@/model/Programme";
 import Bag2 from "@/assets/bag2";
+import { Suspense } from "react";
 export const revalidate = 60;
 
-export default async function Programmes() {
+async function Content() {
   await connectDB();
   const data = await Programme.find();
   const bagColors = [
@@ -16,20 +17,36 @@ export default async function Programmes() {
     { c1: "#ffff99", c2: "#cccc66" }, // Yellow shades
   ];
   return (
-      <div className="flex gap-4 p-4 justify-center md:justify-start flex-wrap">
-        {data?.map((programme, index) => (
-          <Link
-            href={"/programme/" + programme.slug}
-            key={programme._id}
-            className=" flex-initial h-max"
-          >
-            <Bag2
-              title={programme.name}
-              c1={bagColors[index % bagColors.length].c1}
-              c2={bagColors[index % bagColors.length].c2}
-            />
-          </Link>
-        ))}
-      </div>
+    <div className="flex gap-4 p-4 justify-center md:justify-start flex-wrap">
+      {data?.map((programme, index) => (
+        <Link
+          href={"/programme/" + programme.slug}
+          key={programme._id}
+          className=" flex-initial h-max"
+        >
+          <Bag2
+            title={programme.name}
+            c1={bagColors[index % bagColors.length].c1}
+            c2={bagColors[index % bagColors.length].c2}
+          />
+        </Link>
+      ))}
+    </div>
   );
 }
+
+export default async function Programmes() {
+  return (
+    <Suspense fallback={<Skelton />}>
+      <Content />
+    </Suspense>
+  );
+}
+
+const Skelton = () => {
+  return (
+    <div>
+      <div>Loading</div>
+    </div>
+  );
+};

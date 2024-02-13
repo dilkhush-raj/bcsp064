@@ -2,9 +2,11 @@ import Link from "next/link";
 import Bag from "../assets/bag";
 import { connectDB } from "@/utils/mongoose";
 import Programme from "@/model/Programme";
+import { Suspense } from "react";
+import { Skeleton } from "antd";
 export const revalidate = 60;
 
-export default async function SingleProgramme({ slug }) {
+async function Content({ slug }) {
   await connectDB();
   const data = await Programme.findOne({ slug: slug });
   const color = [
@@ -32,6 +34,16 @@ export default async function SingleProgramme({ slug }) {
           </Link>
         );
       })}
+    </div>
+  );
+}
+
+export default async function SingleProgramme({ slug }) {
+  return (
+    <div>
+      <Suspense fallback={<Skeleton />}>
+        <Content slug={slug} />
+      </Suspense>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import { connectDB } from "@/utils/mongoose";
 import Notice from "@/model/Notice";
+import { connectDB } from "@/utils/mongoose";
 import getUserData from "@/utils/user";
-import DeleteNoticeButton from "./ui/deleteNotice";
 import Link from "next/link";
 import { Suspense } from "react";
-export const revalidate = 60;
+import DeleteNoticeButton from "./ui/deleteNotice";
+export const dynamic = 'force-dynamic'
 
 async function NoticeData({ programme }) {
   const user = await getUserData();
@@ -22,13 +22,16 @@ async function NoticeData({ programme }) {
 
   let notices;
   if (programme) {
-    notices = await Notice.find({ programme: programme })
+    if(programme === "admin"){
+      notices = await Notice.find().sort({ createdAt: -1 }).skip(skip).limit(5);
+    } else {
+      notices = await Notice.find({ programme: programme })
       .sort({ createdOn: -1 })
       .skip(skip)
       .limit(5);
+    }
   } else {
     notices = await Notice.find().sort({ createdAt: -1 }).skip(skip).limit(5);
-    // notices = await Notice.find().sort({ createdOn: -1 }).limit(limit);
   }
 
   const textColors = [
@@ -75,10 +78,15 @@ async function NoticeData({ programme }) {
                 {item?.programme}
               </div>
             ) : null}
-            <div className="p-2 w-full">
-              <div className=" ">{item?.name}</div>
+            {(programme === "admin") ? (
+              <div className=" uppercase bg-[#ddd] w-max font-bold flex items-center rounded-sm  px-[8px] text-md">
+                {item?.programme}
+              </div>
+            ) : null}
+            <div className="w-full p-2">
+              <div className="">{item?.name}</div>
               <div className="flex gap-2">
-                <span className=" text-sm flex flex-wrap gap-2 w-max mt-1">
+                <span className="flex flex-wrap gap-2 mt-1 text-sm w-max">
                   {item?.semester?.map((sem, index) => (
                     <div
                       key={index}
@@ -119,8 +127,8 @@ async function NoticeData({ programme }) {
 
 export default async function NoticeBoard({ programme }) {
   return (
-    <div className="flex flex-col gap-2 flex-wrap w-ful ">
-      <h2 className=" text-3xl mt-2 mx-2 border-b-2 border-black uppercase font-bold">
+    <div className="flex flex-col flex-wrap gap-2 w-ful ">
+      <h2 className="mx-2 mt-2 text-3xl font-bold uppercase border-b-2 border-black ">
         {programme} Notice Board
       </h2>
       <Suspense fallback={<Skelton />}>

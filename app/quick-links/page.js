@@ -1,9 +1,9 @@
-import { PiLinkSimpleBold } from "react-icons/pi";
-import { connectDB } from "@/utils/mongoose";
-import Link from "next/link";
 import ImpLink from "@/model/impLink.model";
-import { Suspense } from "react";
+import { connectDB } from "@/utils/mongoose";
 import { Skeleton } from "antd";
+import Link from "next/link";
+import { Suspense } from "react";
+import { PiLinkSimpleBold } from "react-icons/pi";
 
 async function Content() {
   await connectDB();  
@@ -12,7 +12,7 @@ async function Content() {
   return (
       <div className="flex flex-col gap-4 p-2">
         {data?.map((link) => (
-          <Link href={link.link} key={link._id} className=" flex items-center gap-2 w-max ">
+          <Link href={link.link} key={link._id} className="flex items-center gap-2  w-max">
             <PiLinkSimpleBold />
             <span>{link.name}</span>
           </Link>

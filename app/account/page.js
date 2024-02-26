@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SignIn from "@/components/SignIn";
 import getUserData from "@/utils/user";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Link from "next/link";
 import { Suspense } from "react";
 export const revalidate = 60;
 
@@ -11,17 +12,17 @@ const Page = async () => {
 
   return (
     <main className="min-h-screen p-2 md:p-4">
-      <h1 className="text-3xl mb-2 border-b-2 border-black font-bold">
+      <h1 className="mb-2 text-3xl font-bold border-b-2 border-black">
         Account
       </h1>
       {session ? (
         <Suspense fallback={<div>Loading...</div>}>
-          <div className="p-2 max-w-lg">
+          <div className="max-w-lg p-2">
             <div className="flex flex-col gap-2">
               <picture>
                 <img
                   src={session?.user?.image}
-                  className="rounded-md my-1 "
+                  className="my-1 rounded-md "
                   alt=""
                 />
               </picture>
@@ -34,7 +35,7 @@ const Page = async () => {
               </div>
               <div>
                 <b>Programme: </b>
-                <span className=" uppercase">{data?.programme}</span>
+                <span className="uppercase ">{data?.programme}</span>
               </div>
               <div>
                 <b>Email: </b>
@@ -62,7 +63,7 @@ const Page = async () => {
           </div>
         </Suspense>
       ) : (
-        <div>Please Login</div>
+        <div className="flex items-center justify-center"><SignIn /></div>
       )}
     </main>
   );

@@ -3,10 +3,10 @@ import AskQuestion from "@/components/admin/AskQuestion";
 export default function AskQuestions() {
   return (
     <main className="min-h-screen p-2">
-      <h1 className="text-3xl mb-4 border-b-2 border-black capitalize font-bold">
+      <h1 className="mb-4 text-3xl font-bold capitalize border-b-2 border-black">
         Ask Questions
       </h1>
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         <AskQuestion />
         <input
           type="search"

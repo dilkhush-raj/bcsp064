@@ -1,7 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function AuthButton() {
   const [model, setModel] = useState(false);
@@ -31,7 +31,7 @@ export default function AuthButton() {
                   alt=""
                 />
               </picture>
-              <div className="bg-white mt-2 flex flex-col p-4 justify-center items-center">
+              <div className="bg-white mt-2 border-t-2 border-[#eee] flex flex-col p-4 justify-center items-center">
                 <b>{session?.user?.name}</b>
                 <i>{session?.user?.email}</i>
                 <div className="flex gap-4 mt-2">
@@ -42,7 +42,7 @@ export default function AuthButton() {
                   </Link>
                   <button
                     onClick={() => signOut()}
-                    className="bg-white border border-black font-bold py-1 px-2 rounded-full"
+                    className="px-2 py-1 font-bold bg-white border border-black rounded-full"
                   >
                     Sign out
                   </button>

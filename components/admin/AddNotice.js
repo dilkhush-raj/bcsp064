@@ -1,12 +1,40 @@
 "use client";
-import { useFormState, useFormStatus } from "react-dom";
 import { createNotice } from "@/utils/action";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
-import { NoticeboardIcon } from "@/assets/icons";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
 
 export default function AddNotice() {
+  const [programmes, setProgrammes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedProgramme, setSelectedProgramme] = useState('');
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch("/api/programme");
+        const data = await response.json();
+
+        setProgrammes(data.programme);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(programmes);
+
   const [state, formAction] = useFormState(createNotice, {
     message: "",
   });
@@ -22,6 +50,14 @@ export default function AddNotice() {
     }
   }, [state.message]);
 
+  
+  const handleChange = (event) => {
+    setSelectedProgramme(event.target.value);
+  };
+
+  if(isLoading){
+    return <div>Loading ...</div>
+  }
   const cycle = [
     "Semester 1",
     "Semester 2",
@@ -45,10 +81,10 @@ export default function AddNotice() {
       </button>
       <dialog
         id="notice_modal"
-        className="p-2 sm:p-4 rounded-md shadow-md max-w-xl"
+        className="max-w-xl p-2 rounded-md shadow-md sm:p-4"
       >
         <div className="">
-          <h2 className="text-2xl text-center font-bold border-b-4 border-black">
+          <h2 className="text-2xl font-bold text-center border-b-4 border-black">
             Add Notice
           </h2>
           <form
@@ -62,44 +98,64 @@ export default function AddNotice() {
                 type="text"
                 id="name"
                 name="name"
-                className="input input-bordered w-full"
+                className="w-full input input-bordered"
                 required
               />
             </div>
-            <div className="form-control w-full">
+            <div className="w-full form-control">
               <label htmlFor="link">Link</label>
               <input
                 type="text"
                 id="link"
                 name="link"
-                className="input input-bordered w-full"
+                className="w-full input input-bordered"
               />
             </div>
-            <div className="form-control w-full">
-              <label htmlFor="programme">Programme</label>
+            <div className="w-full form-control">
+              {/* <label htmlFor="programme">Programme</label>
               <input
                 type="text"
                 id="programme"
                 name="programme"
-                className="input input-bordered w-full"
+                className="w-full input input-bordered"
                 required
-              />
+              /> */}
+              <select
+                id="programme"
+                name="programme"
+                value={selectedProgramme}
+                onChange={handleChange}
+                className="w-full text-black input input-bordered"
+                required
+              >
+                <option value="">-- Select --</option>
+                {programmes.map((programme) => (
+                  <option key={programme._id} value={programme.slug}>
+                    {programme.name}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className="form-control w-full">
+            <div className="w-full form-control">
               <label htmlFor="cycle">Semester</label>
-              <div className="flex gap-2 flex-wrap items-center">
-              {cycle.map((item, index) => (
-                <div key={index} className="flex items-center p-2 w-[135px] bg-[#eee] rounded-md ">
-                  <input
-                    type="checkbox"
-                    id={`cycle-${index}`}
-                    name="cycle" // Same name for all checkboxes
-                    value={item}
-                    className="flex items-center p-2 w-max gap-2"
-                  />
-                  <label htmlFor={`cycle-${index}`} className="pl-2">{item}</label>
-                </div>
-              ))}
+              <div className="flex flex-wrap items-center gap-2">
+                {cycle.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center p-2 w-[135px] bg-[#eee] rounded-md "
+                  >
+                    <input
+                      type="checkbox"
+                      id={`cycle-${index}`}
+                      name="cycle" // Same name for all checkboxes
+                      value={item}
+                      className="flex items-center gap-2 p-2 w-max"
+                    />
+                    <label htmlFor={`cycle-${index}`} className="pl-2">
+                      {item}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex justify-between ">
@@ -112,7 +168,7 @@ export default function AddNotice() {
               </button>
               <button
                 type="button"
-                className="bg-white border border-black font-bold py-1 px-2 rounded-sm"
+                className="px-2 py-1 font-bold bg-white border border-black rounded-sm"
                 onClick={() => document.getElementById("notice_modal").close()}
               >
                 Cancel

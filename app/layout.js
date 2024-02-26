@@ -1,12 +1,12 @@
-import { Poppins } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/ui/Footer";
-import { website_title } from "@/utils/constant";
-import Sidebar from "@/components/ui/Sidebar";
-import { getServerSession } from "next-auth";
-import SessionProvider from "@/utils/SessionProvider";
-import Script from "next/script";
 import Nav from "@/components/Nav";
+import Footer from "@/components/ui/Footer";
+import Sidebar from "@/components/ui/Sidebar";
+import SessionProvider from "@/utils/SessionProvider";
+import { website_title } from "@/utils/constant";
+import { getServerSession } from "next-auth";
+import { Poppins } from "next/font/google";
+import Script from "next/script";
+import "./globals.css";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -33,7 +33,7 @@ export default async function RootLayout({ children }) {
         <SessionProvider session={session}>
           <Nav />
           <div className="grid md:grid-cols-[200px_1fr] ">
-            <div className="hidden md:flex flex-col justify-between">
+            <div className="flex-col justify-between hidden md:flex">
               <Sidebar />
             </div>
             <div className="h-[calc(100vh-60px)] overflow-x-auto">

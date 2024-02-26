@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Schema for Notice
 const UserSchema = new mongoose.Schema({
   role: {
     type: String,
@@ -14,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     image: String,
     programme: String,
     semester: Number,
-    enrollment: Number,
+    enrolment: Number,
     enrolment: Number,
     mobile: Number,
     email2: String,

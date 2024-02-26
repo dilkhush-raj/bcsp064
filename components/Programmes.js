@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { connectDB } from "@/utils/mongoose";
-import Programme from "@/model/Programme";
 import Bag2 from "@/assets/bag2";
+import Programme from "@/model/Programme";
+import { connectDB } from "@/utils/mongoose";
+import Link from "next/link";
 import { Suspense } from "react";
 export const revalidate = 60;
 

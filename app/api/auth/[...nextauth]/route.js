@@ -1,7 +1,7 @@
+import User from "@/model/User";
+import { connectDB } from "@/utils/mongoose";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { connectDB } from "@/utils/mongoose";
-import User from "@/model/User";
 export const revalidate = 60;
 
 export const authOptions = {

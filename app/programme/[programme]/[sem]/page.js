@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { connectDB } from "@/utils/mongoose";
-import Course from "@/model/Course";
 import BookIcon from "@/assets/book";
+import Course from "@/model/Course";
+import { connectDB } from "@/utils/mongoose";
+import Link from "next/link";
 import { Suspense } from "react";
 
 async function Content({ sem, programme }) {
@@ -17,13 +17,13 @@ async function Content({ sem, programme }) {
     return obj;
   }, {});
   return (
-    <div className="index p-4">
+    <div className="p-4 index">
       {Object.entries(groupedData).map(([category, categoryData]) => (
         <div key={category} className="">
-          <h2 className="capitalize text-2xl font-medium">{category}</h2>
-          <ul className="flex gap-5 flex-wrap">
+          <h2 className="text-2xl font-medium capitalize">{category}</h2>
+          <ul className="flex flex-wrap gap-5">
             {categoryData.map((item, index) => (
-              <li key={index} className="w-max relative">
+              <li key={index} className="relative w-max">
                 <Link
                   href={
                     "/programme/" + programme + "/" + sem + "/" + item?.slug
@@ -56,14 +56,14 @@ export default async function CoursePage({ params }) {
 
 function Skelton() {
   return (
-    <div className=" p-4">
-      <ul className="flex gap-5 flex-wrap">
+    <div className="p-4 ">
+      <ul className="flex flex-wrap gap-5">
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
       </ul>
-      <ul className="flex gap-5 mt-5 flex-wrap">
+      <ul className="flex flex-wrap gap-5 mt-5">
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>
         <div className=" w-[180px] h-[202px] rounded-lg bg-[#eee] animate-pulse"></div>

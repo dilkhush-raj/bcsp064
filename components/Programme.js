@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Bag from "../assets/bag";
-import { connectDB } from "@/utils/mongoose";
 import Programme from "@/model/Programme";
-import { Suspense } from "react";
+import { connectDB } from "@/utils/mongoose";
 import { Skeleton } from "antd";
+import Link from "next/link";
+import { Suspense } from "react";
+import Bag from "../assets/bag";
 export const revalidate = 60;
 
 async function Content({ slug }) {
@@ -19,7 +19,7 @@ async function Content({ slug }) {
   ];
 
   return (
-    <div className="flex flex-wrap gap-4 justify-center md:justify-start  ">
+    <div className="flex flex-wrap justify-center gap-4 md:justify-start ">
       {data?.semesters?.map((item, index) => {
         return (
           <Link

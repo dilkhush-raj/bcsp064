@@ -32,7 +32,7 @@ export default async function Home() {
         ) : (
           <NotLoggedUserComponent />
         )}
-        <NoticeBoard programme={userProgramme} />
+        <NoticeBoard role={"admin"} programme={userProgramme} />
       </div>
     </main>
   );

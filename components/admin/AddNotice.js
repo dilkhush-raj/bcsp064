@@ -11,8 +11,6 @@ export default function AddNotice() {
   const [error, setError] = useState(null);
   const [selectedProgramme, setSelectedProgramme] = useState('');
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -32,8 +30,6 @@ export default function AddNotice() {
 
     fetchData();
   }, []);
-
-  console.log(programmes);
 
   const [state, formAction] = useFormState(createNotice, {
     message: "",
@@ -68,6 +64,7 @@ export default function AddNotice() {
     "Year 1",
     "Year 2",
     "Year 3",
+    "All"
   ];
 
   return (
@@ -112,14 +109,6 @@ export default function AddNotice() {
               />
             </div>
             <div className="w-full form-control">
-              {/* <label htmlFor="programme">Programme</label>
-              <input
-                type="text"
-                id="programme"
-                name="programme"
-                className="w-full input input-bordered"
-                required
-              /> */}
               <select
                 id="programme"
                 name="programme"
@@ -142,14 +131,14 @@ export default function AddNotice() {
                 {cycle.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center p-2 w-[135px] bg-[#eee] rounded-md "
+                    className="flex items-center p-2 w-[140px] bg-[#eee] rounded-md "
                   >
                     <input
                       type="checkbox"
                       id={`cycle-${index}`}
                       name="cycle" // Same name for all checkboxes
                       value={item}
-                      className="flex items-center gap-2 p-2 w-max"
+                      className="w-max"
                     />
                     <label htmlFor={`cycle-${index}`} className="pl-2">
                       {item}

@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import NoticeBoard from "@/components/Notice";
+import NoticeBoard from "@/components/NoticeBoard";
 import SingleProgramme from "@/components/Programme";
 import Programmes from "@/components/Programmes";
 import ServiceWorker from "@/components/ServiceWorker";
@@ -12,7 +12,14 @@ export const revalidate = 60;
 export default async function Home() {
   const session = await getServerSession(authOptions);
   const data = await getUserData();
-  const userProgramme = data?.programme;
+  const role = data?.role;
+  let userProgramme;
+  if(data){
+    userProgramme = data?.programme;
+  } else{
+    userProgramme = false;
+  }
+  console.log("up", userProgramme);
   if (session) {
     if (!data?.programme) {
       redirect("/account/update");
@@ -32,7 +39,7 @@ export default async function Home() {
         ) : (
           <NotLoggedUserComponent />
         )}
-        <NoticeBoard role={"admin"} programme={userProgramme} />
+        <NoticeBoard role={role} programme={userProgramme} />
       </div>
     </main>
   );

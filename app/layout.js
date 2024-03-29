@@ -1,12 +1,14 @@
-import Nav from "@/components/Nav";
-import Footer from "@/components/ui/Footer";
-import Sidebar from "@/components/ui/Sidebar";
+import Footer from "@/components/Footer";
 import SessionProvider from "@/utils/SessionProvider";
 import { website_title } from "@/utils/constant";
 import { getServerSession } from "next-auth";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
+import getUserData from "@/utils/user";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -21,6 +23,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession();
+  const data = await getUserData();
+  const role = data?.role;
   return (
     <html lang="en">
       <Script
@@ -28,13 +32,18 @@ export default async function RootLayout({ children }) {
         defer
       ></Script>
       <Script src="/script.js" id="script"></Script>
-      <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" sizes="any" />
-      <body className={poppins.className} >
-        <SessionProvider session={session}>
-          <Nav />
+      <link
+        rel="shortcut icon"
+        href="/favicon.svg"
+        type="image/x-icon"
+        sizes="any"
+      />
+      <body className={poppins.className}>
+      <SessionProvider session={session}>
+          <Navbar role={role} />
           <div className="grid md:grid-cols-[200px_1fr] ">
             <div className="flex-col justify-between hidden md:flex">
-              <Sidebar />
+              <Sidebar role={role} />
             </div>
             <div className="h-[calc(100vh-60px)] overflow-x-auto">
               {children}

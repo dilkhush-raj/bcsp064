@@ -1,5 +1,6 @@
 import Notice from "@/model/Notice";
 import { connectDB } from "@/utils/mongoose";
+export const revalidate = 60;
 
 export async function GET(request) {
   const url = new URL(request.url, `http://${request.headers.host}`);
@@ -7,16 +8,16 @@ export async function GET(request) {
   const role = url.searchParams.get("role");
   const page = url.searchParams.get("page");
   const limit = url.searchParams.get("limit");
-
   const skip = (page - 1) * limit;
-
+ console.log("route.js", programme);
   await connectDB();
 
   let data, totalRecords;
 
-  if (!programme || role === "admin") {
+  if (programme === "false" || role === "admin") {
     data = await Notice.find().sort({ createdOn: -1 }).skip(skip).limit(limit);
     totalRecords = await Notice.countDocuments();
+    console.log("route data", data);
   } else {
     data = await Notice.find({
       $or: [

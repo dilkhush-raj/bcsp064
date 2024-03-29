@@ -9,6 +9,9 @@ export default function NoticeBoard({ programme, role }) {
   const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
+  const [loading, setLoading] = useState(true);
+
+  console.log("noticeboard", programme);
 
   useEffect(() => {
     async function getData() {
@@ -23,6 +26,7 @@ export default function NoticeBoard({ programme, role }) {
       const ResponseData = await res.json();
       setNotices(ResponseData.data);
       setTotalRecords(ResponseData.totalRecords);
+      setLoading(false)
     }
 
     getData();
@@ -32,10 +36,12 @@ export default function NoticeBoard({ programme, role }) {
 
   function handlePreviousPage() {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    setLoading(true);
   }
 
   function handleNextPage() {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    setLoading(true);
   }
 
   const handleDelete = async (id) => {
@@ -67,34 +73,34 @@ export default function NoticeBoard({ programme, role }) {
   return (
     <div className="flex flex-col flex-wrap gap-2 w-ful ">
       <h2 className="mx-2 flex justify-between mt-2 text-3xl font-bold border-b-2 border-black ">
-        <div>{(role === "admin" ? "Admin" : <span className="uppercase">{programme}</span>)} Notice Board</div>
-        <div className="flex justify-end items-center gap-4 p-2">
+        <div>{(role === "admin" ? "Admin" : <span className="uppercase">{programme}</span>)} Notice Board</div> 
+      </h2>
+      <div className="flex justify-end items-center gap-4 px-2">
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
             className={
               currentPage === 1
-                ? "bg-gray-300 text-gray-500 rounded-md px-2 py-1 text-base flex gap-2 items-center"
-                : " bg-blue-600 text-white rounded-md px-2 py-1 text-base flex gap-2 items-center"
+                ? "bg-gray-300 text-gray-500 rounded-md px-2 py-1 text-xs flex gap-2 items-center"
+                : " bg-blue-600 text-white rounded-md px-2 py-1 text-xs flex gap-2 items-center"
             }
           >
-            <MdSkipPrevious /> Previous
+            <MdSkipPrevious />
           </button>
+          <div>{currentPage} / { Math.ceil(totalRecords/pageSize)}</div>
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
             className={
               currentPage === totalPages
-                ? "bg-gray-300 text-gray-500 rounded-md px-2 py-1 text-base flex gap-2 items-center"
-                : " bg-blue-600 text-white rounded-md px-2 py-1 text-base flex gap-2 items-center"
+                ? "bg-gray-300 text-gray-500 rounded-md px-2 py-1 text-xs flex gap-2 items-center"
+                : " bg-blue-600 text-white rounded-md px-2 py-1 text-xs flex gap-2 items-center"
             }
           >
-            Next <MdSkipNext />
+          <MdSkipNext />
           </button>
         </div>
-      </h2>
-
-      {notices.length >= 1 ? (
+      {!loading ? (
         <div className="p-2 min-h-[450px] overflow-y-auto flex  flex-col gap-3 ">
           {notices?.map((item) => {
             const id = item._id.toString();
@@ -189,12 +195,12 @@ export default function NoticeBoard({ programme, role }) {
 function Skelton() {
   return (
     <div className="p-2 min-h-[450px] overflow-y-auto flex flex-col gap-3">
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
-      <div className="h-[63px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
+      <div className="h-[58px] w-full bg-gray-200 rounded-md animate-pulse "></div>
     </div>
   );
 }

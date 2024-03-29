@@ -31,7 +31,7 @@ const Page = async () => {
               </div>
               <div>
                 <b>Enrolment: </b>
-                <span>{data?.enrollment}</span>
+                <span>{data?.enrolment}</span>
               </div>
               <div>
                 <b>Programme: </b>

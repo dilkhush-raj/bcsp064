@@ -1,4 +1,4 @@
-import Notice from "@/components/Notice";
+import NoticeBoard from "@/components/NoticeBoard";
 import SingleProgramme from "@/components/Programme";
 export const revalidate = 60;
 
@@ -14,7 +14,7 @@ export default async function SingleProgrammePage({ params }) {
           </h1>
           <SingleProgramme slug={programme} />
         </div>
-        <Notice programme={programme} />
+        <NoticeBoard programme={programme} />
       </div>
     </main>
   );

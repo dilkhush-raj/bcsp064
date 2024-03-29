@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import getUserData from "@/utils/user";

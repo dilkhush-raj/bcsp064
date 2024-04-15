@@ -1,14 +1,9 @@
-import AddCourse from "@/components/admin/AddCourse";
-import AddImpLinks from "@/components/admin/AddImpLinks";
-import AddNotice from "@/components/admin/AddNotice";
-import AddProgramme from "@/components/admin/AddProgramme";
-import ProgrammeData from "@/data/programme";
+import AdminDashboard from "@/components/AdminDashboard";
 import getUserData from "@/utils/user";
 
 export default async function page() {
-  const programme = await ProgrammeData();
-  console.log(programme);
   const data = await getUserData();
+  console.log(data);
 
   if (data?.role !== "admin") {
     return (
@@ -24,15 +19,13 @@ export default async function page() {
 
   return (
     <main className="min-h-screen p-4 ">
-      <h1 className="my-2 text-3xl font-bold border-b-2 border-black">
-        Admin
-      </h1>
-      <div className="flex flex-wrap gap-5">
-        <AddNotice />
-        <AddImpLinks />
-        <AddProgramme />
-        <AddCourse />
-      </div>
+      <picture>
+        <img src={data?.image || "/"} alt="" />
+      </picture>
+      Welcome to Admin Dashboard {data?.name}
+      <br />
+      Your email is {data?.email}
+      <AdminDashboard />
     </main>
   );
 }

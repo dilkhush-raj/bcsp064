@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
 
-export default function NoticeBoard({ programme, role }) {
+export default function NoticeBoard({ programme, role, pageLength }) {
   const [notices, setNotices] = useState([]);
   const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(6);
+  const [pageSize, setPageSize] = useState(pageLength || 6);
   const [loading, setLoading] = useState(true);
-
-  console.log("noticeboard", programme);
 
   useEffect(() => {
     async function getData() {

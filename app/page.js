@@ -12,7 +12,6 @@ export const revalidate = 60;
 export default async function Home() {
   const session = await getServerSession(authOptions);
   const data = await getUserData();
-  const role = data?.role;
   let userProgramme;
   if(data){
     userProgramme = data?.programme;
@@ -39,7 +38,7 @@ export default async function Home() {
         ) : (
           <NotLoggedUserComponent />
         )}
-        <NoticeBoard role={role} programme={userProgramme} />
+        <NoticeBoard role={"user"} programme={userProgramme} />
       </div>
     </main>
   );

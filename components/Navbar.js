@@ -41,11 +41,11 @@ export default function Navbar({ role }) {
                       onClick={() => setToggle(!toggle)}
                       className="flex flex-col gap-3 px-2 font-medium items-bottom "
                     >
-                      <HomeLink />
+                      <HomeLink route={"/"} />
                       {(role==="admin") ? (
                         <ActiveLink
                           href={"/admin"}
-                          label={"Dashboard"}
+                          label={"Admin Dashboard"}
                           icon={<MdAdminPanelSettings />}
                         />
                       ) : null}
@@ -80,13 +80,13 @@ export default function Navbar({ role }) {
   );
 }
 
-function HomeLink() {
+export function HomeLink({route}) {
   const pathname = usePathname();
   return (
     <Link
-      href={"/"}
+      href={route || "/"}
       className={
-        pathname === "/"
+        pathname === route
           ? " bg-[#eee]  px-2 py-2 rounded-md flex gap-2 items-center"
           : " px-2 py-2 hover:bg-[#f5f5f5] rounded-md flex gap-2 items-center"
       }
@@ -96,7 +96,7 @@ function HomeLink() {
   );
 }
 
-function ActiveLink({ href, label, icon }) {
+export function ActiveLink({ href, label, icon }) {
   const pathname = usePathname();
   return (
     <Link

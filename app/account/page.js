@@ -1,5 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SignIn from "@/components/SignIn";
+import UpdateUser from "@/components/forms/UpdateUserData";
 import getUserData from "@/utils/user";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const Page = async () => {
                 />
               </picture>
               <div>
-                <b>Name: </b> {session.user.name}
+                <b>Name: </b> {data?.name || session.user.name}
               </div>
               <div>
                 <b>Enrolment: </b>
@@ -55,11 +56,7 @@ const Page = async () => {
               </div>
             </div>
             <br />
-            <Link href={"/account/update"}>
-              <button className="bg-[#465fc8] text-white font-bold py-1 px-2 rounded-md">
-                Update
-              </button>
-            </Link>
+      <UpdateUser data={data} />
           </div>
         </Suspense>
       ) : (

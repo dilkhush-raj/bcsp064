@@ -2,8 +2,8 @@
 import { createNotice } from "@/utils/action";
 import { useEffect, useRef, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import toast from "react-hot-toast";
 import { FaEnvelopeOpenText } from "react-icons/fa6";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddNotice() {
   const [programmes, setProgrammes] = useState([]);
@@ -40,7 +40,8 @@ export default function AddNotice() {
     if (state.message.indexOf("Added Notice") === 0) {
       document.getElementById("notice_modal").close();
       ref.current?.reset();
-      toast(state.message);
+      console.log(state.message);
+      toast(state.message)
     } else if (state.message) {
       toast(state.message);
     }
@@ -69,6 +70,7 @@ export default function AddNotice() {
 
   return (
     <main className="">
+    <Toaster />
       <button
         className=" shadow-sm hover:shadow-md flex items-center gap-4 text-xl font-semibold p-2 sm:p-4 rounded-md border border-[#ddd] "
         onClick={() => document.getElementById("notice_modal").showModal()}

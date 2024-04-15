@@ -1,9 +1,4 @@
-export default function Bag2({ title, c1, c2 }) {
-  const color1 = c1 || "#70bf43";
-  const color2 = c2 || "#049448";
-
-  return (
-    <svg
+<svg
       width={120}
       viewBox="0 0 411 497"
       fill="none"
@@ -535,6 +530,9 @@ export default function Bag2({ title, c1, c2 }) {
         <text
           id="BCA"
           fill="white"
+          style={{
+            whiteSpace: "pre",
+          }}
           fontSize={84}
           fontWeight="bold"
           letterSpacing="0em"
@@ -542,7 +540,11 @@ export default function Bag2({ title, c1, c2 }) {
           x="50%" // Set x to 50% to center horizontally
           y={"170"} // Set y to 50% to center vertically
         >
-          <tspan>{title}</tspan>
+          <tspan 
+          style={{
+            whiteSpace: "pre",
+            fontFamily: "Poppins"
+          }} >{title}</tspan>
         </text>
       </g>
       <defs>
@@ -586,5 +588,3 @@ export default function Bag2({ title, c1, c2 }) {
         </clipPath>
       </defs>
     </svg>
-  );
-}

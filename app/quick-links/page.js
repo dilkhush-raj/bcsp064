@@ -5,19 +5,24 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { PiLinkSimpleBold } from "react-icons/pi";
 
-async function Content() {
-  await connectDB();  
+async function fetchData() {
+  await connectDB();
   const fetch = await ImpLink.find();
-  const data = fetch.sort((a, b) => a.name.localeCompare(b.name));
+  return fetch.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function Content() {
+  const data = await fetchData();
+
   return (
-      <div className="flex flex-col gap-4 p-2">
-        {data?.map((link) => (
-          <Link href={link.link} key={link._id} className="flex items-center gap-2  w-max">
-            <PiLinkSimpleBold />
-            <span>{link.name}</span>
-          </Link>
-        ))}
-      </div>
+    <div className="flex flex-col gap-4 p-2">
+      {data?.map((link) => (
+        <Link href={link.link} target="_blank" key={link._id} className="flex items-center gap-2  w-max">
+          <PiLinkSimpleBold />
+          <span>{link.name}</span>
+        </Link>
+      ))}
+    </div>
   );
 }
 

@@ -9,7 +9,6 @@ export async function GET(request) {
   const page = url.searchParams.get("page");
   const limit = url.searchParams.get("limit");
   const skip = (page - 1) * limit;
- console.log("route.js", programme);
   await connectDB();
 
   let data, totalRecords;
@@ -17,7 +16,6 @@ export async function GET(request) {
   if (programme === "false" || role === "admin") {
     data = await Notice.find().sort({ createdOn: -1 }).skip(skip).limit(limit);
     totalRecords = await Notice.countDocuments();
-    console.log("route data", data);
   } else {
     data = await Notice.find({
       $or: [

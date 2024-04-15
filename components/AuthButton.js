@@ -62,7 +62,7 @@ export default function AuthButton() {
     <>
       <button
         onClick={() => signIn()}
-        className="bg-blue-600 text-white font-bold py-1 px-2 rounded-md "
+        className="bg-blue-600 text-white font-medium py-1 px-2 rounded-md "
       >
         Sign In
       </button>

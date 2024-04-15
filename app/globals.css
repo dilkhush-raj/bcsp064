@@ -24,7 +24,7 @@ body {
   background-image: linear-gradient(315deg, #eff3fa 0%, #fbfcfc 74%);
 }
 
-input {
+input, select {
   padding: 4px 2px;
   border: 1px solid #ddd;
   width: 100%;

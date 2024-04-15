@@ -1,6 +1,7 @@
-import { PiBooksFill } from "react-icons/pi";
+import { PiBooksFill, PiStudentFill, PiNewspaperClippingFill } from "react-icons/pi";
 import { MdAccountCircle, MdOutlineHelp, MdQuestionAnswer } from "react-icons/md";
-import { FaLink } from "react-icons/fa";
+import { FaLink, FaCalendarAlt } from "react-icons/fa";
+
 export const website_title = "TPS IGNOU Student Zone";
 export const impLinks = [
     {
@@ -82,15 +83,20 @@ export const navLinks = [
     route: "/account",
     icon: <MdAccountCircle />
   },
-  {
-    label: "Ask Questions",
-    route: "/ask-questions",
-    icon: <MdQuestionAnswer />
-  },
+  // {
+  //   label: "Ask Questions",
+  //   route: "/ask-questions",
+  //   icon: <MdQuestionAnswer />
+  // },
   {
     label: "Programme",
     route: "/programme",
     icon: <PiBooksFill />
+  },
+  {
+    label: "Schedule",
+    route: "/schedule",
+    icon: <FaCalendarAlt />
   },
   {
     label: "Quick Links",
@@ -103,3 +109,26 @@ export const navLinks = [
     icon: <MdOutlineHelp />
   }
 ];
+
+export const adminNavLinks = [
+  {
+    label: "Notice Board",
+    route: "/admin/notice-board",
+    icon: <PiNewspaperClippingFill />
+  },
+  {
+    label: "Schedule",
+    route: "/admin/schedule",
+    icon: <FaCalendarAlt />
+  },
+  {
+    label: "Quick Links",
+    route: "/admin/quick-links",
+    icon: <FaLink />
+  },
+  {
+    label: "Students",
+    route: "/admin/students",
+    icon: <PiStudentFill />
+  },
+]
